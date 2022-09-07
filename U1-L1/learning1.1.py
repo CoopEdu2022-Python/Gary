@@ -27,7 +27,7 @@ f = 10.5
 b = True
 
 print()#输出
-type()#输入
+type()     #输入
 
 a = input('输出信息') #a=想要收集的值
 
