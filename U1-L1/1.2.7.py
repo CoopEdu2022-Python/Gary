@@ -1,2 +1,1 @@
-for i in range(50):
-    print('太棒了')
+print('太棒了'*50)
