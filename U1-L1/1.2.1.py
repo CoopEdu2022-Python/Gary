@@ -5,5 +5,5 @@ anwser1_2 = 10 - 2
 print(anwser1_2)
 anwser1_3 = 2*4
 print(anwser1_3)
-anwser1_4 = 16/2
-print(anwser1_4)
+anwser1_5 = 16 / 2
+print(anwser1_5)
