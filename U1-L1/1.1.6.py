@@ -2,7 +2,7 @@
 
 name = 'Gary'
 gender = '男'
-code = '111111111'
+code = 111111111
 
 print(name)
 print(gender)
