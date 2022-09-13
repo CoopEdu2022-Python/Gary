@@ -1,2 +1,2 @@
 money=56789//12149.05
-print(int(money))
+print('最多能买多少台？%d'%money)
