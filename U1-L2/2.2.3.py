@@ -16,5 +16,7 @@ elif age >=13 and age<=65:
         print('青春期成年人成年人')
     elif age<=24 and age>=64:
         print('年轻人成年人')
-    elif age ==65:
+    elif age >= 65:
         print('老年人')
+
+

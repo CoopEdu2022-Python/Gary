@@ -62,3 +62,4 @@ while row<=9:
         col+=1
     print('')
     row+=1
+

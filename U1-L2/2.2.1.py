@@ -18,3 +18,7 @@ elif not has_ticket:
     print('先买票')
 elif knife_length >= 20:
     print('不许携%d厘米的到上车'%knife_length)
+
+
+
+
