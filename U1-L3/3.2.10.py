@@ -1,13 +1,14 @@
 
 n=int(input('?'))
-s=0
-for i in range(2,n):
-    s=n%i
-    if s==0:
-        print(i,end='')
-        n=n/i
-        if n!=1:
-            print('*',end='')
-        continue
 
+print('%d'%n,end='')
+while n> 1:
+    for i in range(2,n+1):
+        if n%i==0:
+            n=int(n/i)
+            if n==1:
+                print('%d'%i,end='')
+            else:
+                print('%d*'%i,end='')
+            break
 
