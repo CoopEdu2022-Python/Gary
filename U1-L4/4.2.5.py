@@ -8,9 +8,9 @@ def h(num):
         num = num // 2 + 1
         for i in range(1, 2 * num, 2):
             a = '*' * i
-            return (a.center(2 * num - 1))
+            print(a.center(2 * num - 1))
         for n in range(2 * num - 3, 0, -2):
             c = '*' * n
-            return (c.center(2 * num - 1))
+            print(c.center(2 * num - 1))
 a = int(input('?'))
-print(h(a))
+h(a)
