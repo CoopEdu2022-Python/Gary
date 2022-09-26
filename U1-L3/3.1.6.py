@@ -1,8 +1,10 @@
 a = 0
 b = 0
 p = 0
-for i in range(30):
+j = 1
+while j <= 30:
     a = int(input('学生分数'))
+    j += 1
     if a > 100:
         print('分数有误，请重新输入')
         continue

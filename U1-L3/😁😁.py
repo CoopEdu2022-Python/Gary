@@ -6,6 +6,7 @@ for i in range(30):
     if a > 100:
         print('分数有误，请重新输入')
         continue
+
     if a < 0:
         print('分数有误，请重新输入')
         continue
