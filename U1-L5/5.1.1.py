@@ -29,4 +29,5 @@ print('step11:', num_list.count(1))
 print('step12:', len(num_list))
 num_list.reverse()
 print('step13:', num_list)
-
+del num_list
+print('step14:', num_list)
