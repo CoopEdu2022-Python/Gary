@@ -1,4 +1,7 @@
 list_num = [1, 3, 4, 3, 7, 3, 9, 8, 6, 3]
-for i in range(4):
-    list_num.remove(3)
-print(list_num)
+new=[]
+for i in list_num:
+    if i != 3:
+        new.append(i)
+        print()
+print(new)
