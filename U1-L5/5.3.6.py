@@ -16,4 +16,4 @@ def compare_dict(dict1, dict2):
 
 
 
-print(compare_dict({'a': 1, 'b': 2, 'c': 3}, {'a': 1, 'b': 2, 'c': 3, 'd': 4}))
+print(compare_dict())
