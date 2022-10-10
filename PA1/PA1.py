@@ -1,3 +1,6 @@
+import os
+
+
 def print_tictactoe():
     print('%3s|%3s|%3s' % (blank_tictactoe['blank0'], blank_tictactoe['blank1'], blank_tictactoe['blank2']))
     print('-----------')
@@ -61,15 +64,14 @@ while True:
     count_playerXO = []
     print_tictactoe()
     while True:
-
-
+        os.system('cls')
 
         while True:
             player1 = input('玩家X请输入行数和列数的组合，如第一行第一列请输入0-8')
-            if not player1 in count_playerXO:
+            if player1 not in count_playerXO:
                 if len(count_playerXO) == 6:
                     a = str(count_playerXO.pop(0))
-
+                    print('消除了', a, 'X')
                     blank_tictactoe['blank' + a] = ' '
                 count_playerXO.append(player1)
                 decide(player1, 'X ')
@@ -77,11 +79,13 @@ while True:
 
                 print_tictactoe()
                 print(count_playerXO)
+                os.system('cls')
                 break
 
             else:
                 print('已经有了')
         if win:
+            os.system('cls')
             break
 
         while True:
@@ -89,6 +93,7 @@ while True:
             if not player2 in count_playerXO:
                 if len(count_playerXO) == 6:
                     a = str(count_playerXO.pop(0))
+                    print('消除了', a, 'O')
                     print(a)
 
                     blank_tictactoe['blank' + a] = ' '
@@ -99,9 +104,11 @@ while True:
                 win = judge()
                 print_tictactoe()
                 print(count_playerXO)
+                os.system('cls')
                 break
 
             else:
                 print('已经有了')
         if win:
+            os.system('cls')
             break
