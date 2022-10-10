@@ -4,4 +4,5 @@ for i in o:
     for y in o:
         if i == y and o.count(i) > 1:
             o.remove(i)
+o.sort()
 print(tuple(o))

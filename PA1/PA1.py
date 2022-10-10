@@ -58,9 +58,11 @@ while True:
     blank_tictactoe = {'blank0': ' ', 'blank1': ' ', 'blank2': ' ', 'blank3': ' ', 'blank4': ' ', 'blank5': ' ',
                        'blank6': ' ', 'blank7': ' ', 'blank8': ' '}
 
+    count_playerXO = []
+    print_tictactoe()
     while True:
 
-    count_playerXO = []
+
 
         while True:
             player1 = input('玩家X请输入行数和列数的组合，如第一行第一列请输入0-8')
@@ -90,13 +92,15 @@ while True:
                     print(a)
 
                     blank_tictactoe['blank' + a] = ' '
+
                 count_playerXO.append(player2)
 
                 decide(player2, 'O ')
                 win = judge()
                 print_tictactoe()
-                break
                 print(count_playerXO)
+                break
+
             else:
                 print('已经有了')
         if win:
