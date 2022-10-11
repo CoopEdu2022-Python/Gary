@@ -3,7 +3,7 @@ passwords = ('123', 'abc', '@*#')
 user=input('用户名')
 password=input('密码')
 i=0
-while i>3:
+while not i>3:
     if user == users[0]:
         if password == passwords[0]:
             print('进入系统')
@@ -24,5 +24,7 @@ while i>3:
             break
         else:
             print('密码错误')
+            i+=1
     else:
         print('用户名输入错误')
+        i+=1

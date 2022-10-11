@@ -7,11 +7,13 @@ def a(p):
     er = 0
     for i in range(7):
         g = int(input('?'))
-        if g > 10 or g < 0:
-            print('错了')
-            continue
-        else:
-            l.append(g)
+        while True:
+            if g > 10 or g < 0:
+                print('错了')
+                continue
+            else:
+                l.append(g)
+                break
     y = sorted(l)
     v = l[2:-2]
     for g in v:
