@@ -1,10 +1,8 @@
 def compare_dict(dict1, dict2):
     a = []
-    for key,value in dict1.items():
+    for key, value in dict1.items():
         if key in dict2:
             if not value == dict2[key]:
-
-
                 a.append(key)
                 a.append(value)
         else:
@@ -15,5 +13,4 @@ def compare_dict(dict1, dict2):
     return tuple(a)
 
 
-
-print(compare_dict())
+print(compare_dict({'1': 2, '2': 3}, {'1': 2, '2': 3}))
