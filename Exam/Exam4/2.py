@@ -31,6 +31,6 @@ def reset_key(username, user_key, login_info={'user1': ['pw1']}):
             login_info[username].append(user_key)
             print(tuple(username, user_key))
         if len(login_info[username]) == 4:
-            login_info[username].remove([0])
+            login_info[username].pop(0)
         return False
 
