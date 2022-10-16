@@ -62,6 +62,7 @@ while True:
                        'blank6': ' ', 'blank7': ' ', 'blank8': ' '}
 
     count_playerXO = []
+    os.system('cls')
     print_tictactoe()
     while True:
 
