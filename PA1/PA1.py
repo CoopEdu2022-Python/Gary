@@ -68,7 +68,7 @@ while True:
         while True:
             player1 = input('玩家X请输入行数和列数的组合，如第一行第一列请输入0-8')
             if player1 not in count_playerXO:
-                if len(count_playerXO) == 6:
+                if len(count_playerXO) == 7:
                     a = str(count_playerXO.pop(0))
                     print('消除了', a, 'X')
                     blank_tictactoe['blank' + a] = ' '
@@ -92,7 +92,7 @@ while True:
         while True:
             player2 = input('玩家O请输入行数和列数的组合，如第一行第一列请输入0-8')
             if not player2 in count_playerXO:
-                if len(count_playerXO) == 6:
+                if len(count_playerXO) == 7:
                     a = str(count_playerXO.pop(0))
                     print('消除了', a, 'O')
                     print(a)
@@ -119,5 +119,4 @@ while True:
             print('玩家O赢了')
             time.sleep(5)
             break
-    os.system('cls')
-    print_tictactoe()
+
