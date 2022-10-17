@@ -5,7 +5,7 @@ user_key = input('key?')
 def reset_key(username, user_key, login_info={'user1': ['pw1']}):
     while True:
 
-        if len(user_key) >= 8:
+        if len(user_key) <= 8:
             print('密码不少于八位')
         words = 'qwertyuiiiiiopasdfghjklzxcvbnm'
         number = '1234567890'
