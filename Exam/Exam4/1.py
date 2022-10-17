@@ -1,18 +1,9 @@
+def move(x,direction='right',step=1,list_input=[]):
+    if direction == 'right':
+        return list_input[-x:]+list_input[:-x]
+    elif direction == 'left':
+        return list_input[x:]+list_input[:x]
+print(move(2,'left',1,[1,2,3,4,5,6,7,8,9]))
 
-def chang_list(x, direction='right', list_input=[]):
-    new_list = []
-    if direction == 'left':
-        for d in list_input[0:x]:
-            list_input.append(d)
-        for i in range(x):
-            list_input.pop(0)
-        return list_input
-    elif direction == 'right':
 
-        for f in list_input[-1:-x]:
-            list_input.append(f)
-        for i in range(x):
-            list_input.pop(0)
-        return list_input
 
-print(chang_list(2 ,'left'))

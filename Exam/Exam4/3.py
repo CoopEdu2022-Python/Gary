@@ -1,7 +1,7 @@
 def inverse(n, str='1234567896edrgfdnh'):
     new_list = []
     new_list1 = []
-    for i in range(len(str) // n ):
+    for i in range(len(str) // n +1):
         if i == 0:
             new_list.append(str[0:n])
         else:
@@ -12,4 +12,4 @@ def inverse(n, str='1234567896edrgfdnh'):
     return new_list1
 
 
-print(inverse(5))
+print(inverse(11))
