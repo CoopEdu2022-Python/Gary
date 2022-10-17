@@ -41,7 +41,7 @@ def judge():
             blank_tictactoe['blank2'] == blank_tictactoe['blank5'] == blank_tictactoe['blank8'] == 'X ' or \
             blank_tictactoe['blank0'] == blank_tictactoe['blank4'] == blank_tictactoe['blank8'] == 'X ' or \
             blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == 'X ':
-        print('玩家X赢了')
+        print('\033[5; 36; 47m玩家X赢了\033[0m')
         return True
     elif blank_tictactoe['blank0'] == blank_tictactoe['blank1'] == blank_tictactoe['blank2'] == 'O ' or \
             blank_tictactoe['blank3'] == blank_tictactoe['blank4'] == blank_tictactoe['blank5'] == 'O ' or \
@@ -51,7 +51,7 @@ def judge():
             blank_tictactoe['blank2'] == blank_tictactoe['blank5'] == blank_tictactoe['blank8'] == 'O ' or \
             blank_tictactoe['blank0'] == blank_tictactoe['blank4'] == blank_tictactoe['blank8'] == 'O ' or \
             blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == 'O ':
-        print('玩家O赢了')
+        print('\033[5; 36; 47m玩家O赢了\033[0m')
         return True
 
 
@@ -82,11 +82,14 @@ while True:
                 break
 
             else:
-                print('已经有了')
+                os.system('cls')
+                print('\033[1; 31; 47m已经有了\033[0m')
+
+                print_tictactoe()
         if win:
             os.system('cls')
             print_tictactoe()
-            print('玩家O赢了')
+            print('\033[5; 36; 47m玩家X赢了\033[0m')
             time.sleep(5)
             break
 
@@ -110,14 +113,15 @@ while True:
                 break
 
             else:
-                print('已经有了')
                 os.system('cls')
+                print('已经有了')
+
                 print_tictactoe()
 
         if win:
             os.system('cls')
             print_tictactoe()
-            print('玩家O赢了')
+            print('\033[5; 36; 47m玩家O赢了\033[0m')
             time.sleep(5)
             break
 
