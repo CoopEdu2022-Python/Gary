@@ -1,20 +1,20 @@
-item='sdfffffffffffffff'
+item = 'sdfffffffffffffff'
 len(item)
-del(item)
+del (item)
 max(item)
 min(item)
-item='sdfffffffffffffff'
+item = 'sdfffffffffffffff'
 item[::-1]
-item1='sdfffffffffffffff'
-item2='sd'
-item1+item2
-item1*2
+item1 = 'sdfffffffffffffff'
+item2 = 'sd'
+item1 + item2
+item1 * 2
 f in item1
 f not in item1
 for i in item1:
     print(i)
 else:
-    print('end')#如果用了break，就不会执行else
+    print('end')  # 如果用了break，就不会执行else
 # 1. 用多行注释的方式，写出 Python 目前所有的内置函数
 '''
 1. abs()
@@ -352,7 +352,7 @@ _import()_ 函数用于动态加载类和函数 。
 如果一个模块经常变化就可以使用 _import()_ 来动态载入'''
 
 # 2. 用多行注释的方式，说明什么是公共方法；同时，用一些代码举几个简单的例子
-'''就是所有的类型都是可以用的函数print()max()dict()'''
+'''就是所有的类型都是可以用的函数print()max()dict()不用import就可以直接用的函数'''
 
 # 3. 用多行注释的方式，简单描述公共方法和内置函数的关系
-'''公共方法属于内置函数'''
+'''公共方法和内置函数是交集的关系'''
