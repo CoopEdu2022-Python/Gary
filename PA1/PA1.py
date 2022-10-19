@@ -108,10 +108,14 @@ while True:
                     print('\033[5;36;47m玩家X赢了\033[0m')
                     time.sleep(5)
                     break
+
             else:
                 os.system('cls')
                 print('\033[1;31;47m输错了\033[0m')
                 print_tictactoe()
+
+        if win:
+            break
 
         while True:
             player2 = input('玩家O请输入行数和列数的组合，如第一行第一列请输入0-8')
@@ -119,17 +123,14 @@ while True:
                     or player2 == '6' or player2 == '7' or player1 == '8':
 
                 if player2 not in count_playerXO:
+
                     if len(count_playerXO) >= 7:
                         a = str(count_playerXO.pop(0))
                         print('消除了', a, 'O')
                         print(a)
 
-
                     if decide(player2, 'O '):
                         count_playerXO.append(player2)
-
-
-                        blank_tictactoe['blank' + a] = ' '
 
                     count_playerXO.append(player2)
                     win = judge()
@@ -150,7 +151,10 @@ while True:
                     print('\033[5;36;47m玩家O赢了\033[0m')
                     time.sleep(5)
                     break
+
             else:
                 os.system('cls')
                 print('\033[1;31;47m输错了\033[0m')
                 print_tictactoe()
+        if win:
+            break
