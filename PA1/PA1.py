@@ -115,6 +115,7 @@ while True:
                 print_tictactoe()
 
         if win:
+            print('\033[5;36;47m玩家X赢了\033[0m')
             break
 
         while True:
@@ -132,7 +133,6 @@ while True:
                     if decide(player2, 'O '):
                         count_playerXO.append(player2)
 
-                    count_playerXO.append(player2)
                     win = judge()
                     os.system('cls')
                     print_tictactoe()
@@ -157,4 +157,5 @@ while True:
                 print('\033[1;31;47m输错了\033[0m')
                 print_tictactoe()
         if win:
+            print('\033[5;36;47m玩家O赢了\033[0m')
             break
