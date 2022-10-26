@@ -1,6 +1,6 @@
 class Fruit:
-    def color(self):
-        print(self)
+
+    print('!')
 
 
 apple = Fruit()
