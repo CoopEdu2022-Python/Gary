@@ -29,7 +29,7 @@ def judge(X_O):  # 判断输赢
             blank_tictactoe['blank0'] == blank_tictactoe['blank4'] == blank_tictactoe['blank8'] == X_O + ' ' or \
             blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == X_O + ' ':
         os.system('cls')
-        print('\033[5;36;47m玩家{}赢了，游戏结束\033[0m'.format(X_O))
+        print('\033[5;36;47m玩家{}赢了，游戏结束,进入下一回合\033[0m'.format(X_O))
         time.sleep(5)
 
         return True
@@ -55,19 +55,19 @@ while True:
         while True:  # 玩家X回合
             player1 = input('playerX:请输入想下棋的位置0-8')
 
-            if player1 in ['0', '1', '2', '3', '4', '5', '6', '7', '8']:
+            if player1 in ['0', '1', '2', '3', '4', '5', '6', '7', '8']:  # 判断用户输入是否正确
                 os.system('cls')
                 if player1 not in count_playerXO:  # 判断玩家输入的棋的位置是否已经有了棋子
 
                     if chose_mode == '2':  # 进阶玩法
 
                         if len(count_playerXO) > 5:  # 进阶玩法检测是否为六颗棋子在棋盘中，如果超过六颗删除第一颗
-                            delete_XO = str(count_playerXO.pop(0))
+                            delete_XO = str(count_playerXO.pop(0))  # 删除第一颗棋子
 
                             print('消除了', delete_XO, '个格子的', 'X')
-                            time.sleep(5)
-                            blank_tictactoe['blank' + delete_XO] = str(delete_XO) + ' '
-                        if len(count_playerXO) > 4:
+
+                            blank_tictactoe['blank' + delete_XO] = str(delete_XO) + ' '  # 删除字典中对应的棋子，并把对应的数值填会空棋盘中
+                        if len(count_playerXO) > 4:  # 大于四颗就预报要删除哪个
                             print('即将删除{}格子的 O'.format(count_playerXO[0]))
 
                     elif chose_mode == '1':  # 普通玩法
@@ -76,22 +76,22 @@ while True:
                         print('输入模式错误')
                         continue
 
-                    if decide(player1, 'X '):
+                    if decide(player1, 'X '):  # 把字典对应数值填写到棋盘中
                         count_playerXO.append(player1)
 
-                    win = judge('X')
+                    win = judge('X')  # 判断输赢
                     if chose_mode == '1':  # 普通玩法
                         if len(count_playerXO) == 9:  # 标准玩法检测是否平局
-                            if not win:
+                            if not win:  # 如果到第就颗棋还没有赢就没有机会赢了，所以平局
                                 print('平局')
                                 time.sleep(5)
                                 win = True
 
-                    print_tictactoe()
+                    print_tictactoe()  # 更新棋盘
 
                     break
 
-                else:
+                else:  # 如果在列表中就说明已经有棋子了
                     os.system('cls')
                     print('\033[1;31;47m已经有了3\033[0m')
 
@@ -104,12 +104,12 @@ while True:
                     time.sleep(5)
                     break
 
-            else:
+            else:  # 如果玩家输入错误，进行提示
                 os.system('cls')
                 print('\033[1;31;47m输错了2\033[0m')
                 print_tictactoe()
 
-        if win:
+        if win:  # 赢了等一会就跳出循环
             time.sleep(5)
             break
 
@@ -129,7 +129,7 @@ while True:
                             delete_XO = str(count_playerXO.pop(0))
 
                             print('消除了', delete_XO, '格子的', 'O')
-                            time.sleep(5)
+
                             blank_tictactoe['blank' + delete_XO] = str(delete_XO) + ' '
                         if len(count_playerXO) > 4:
                             print('即将删除:第{} 个格子的X'.format(count_playerXO[0]))
