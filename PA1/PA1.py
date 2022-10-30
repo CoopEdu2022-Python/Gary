@@ -191,5 +191,3 @@ while True:
         if win:  # 赢了等一会就跳出循环
             time.sleep(5)
             break
-
-
