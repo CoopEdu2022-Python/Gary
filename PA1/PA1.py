@@ -15,7 +15,7 @@ def decide(XorO_input, X_O):  # 把玩家输入的数字转换成字典的键，
         blank_tictactoe['blank' + XorO_input] = X_O
         return True
     else:
-        print('输错了4')
+        print('输错了')
         return False
 
 
@@ -46,7 +46,7 @@ while True:
     print_tictactoe()
     chose_mode = input('请选择模式(1)普通玩法 (2)进阶玩法')
     if chose_mode not in ['1', '2']:  # 判断玩家的输入有没有错误
-        print('输错了90')
+        print('输错了')
         time.sleep(5)
         continue
     win = bool()
@@ -63,9 +63,7 @@ while True:
 
                         if len(count_playerXO) > 5:  # 进阶玩法检测是否为六颗棋子在棋盘中，如果超过六颗删除第一颗
                             delete_XO = str(count_playerXO.pop(0))  # 删除第一颗棋子
-
                             print('消除了', delete_XO, '个格子的', 'X')
-
                             blank_tictactoe['blank' + delete_XO] = str(delete_XO) + ' '  # 删除字典中对应的棋子，并把对应的数值填会空棋盘中
                         if len(count_playerXO) > 4:  # 大于四颗就预报要删除哪个
                             print('即将删除{}格子的 O'.format(count_playerXO[0]))
@@ -93,7 +91,7 @@ while True:
 
                 else:  # 如果在列表中就说明已经有棋子了
                     os.system('cls')
-                    print('\033[1;31;47m已经有了3\033[0m')
+                    print('\033[1;31;47m已经有了\033[0m')
 
                     print_tictactoe()
 
@@ -106,7 +104,7 @@ while True:
 
             else:  # 如果玩家输入错误，进行提示
                 os.system('cls')
-                print('\033[1;31;47m输错了2\033[0m')
+                print('\033[1;31;47m输错了\033[0m')
                 print_tictactoe()
 
         if win:  # 赢了等一会就跳出循环
@@ -154,26 +152,26 @@ while True:
 
                     break
 
-                else:
+                else:  # 如果在列表中就说明已经有棋子了
                     os.system('cls')
-                    print('已经有了9')
+                    print('已经有了')
 
                     print_tictactoe()
 
-                if win:
+                if win:  # 判断是否有玩家赢了，如果赢了就跳出循环
                     os.system('cls')
                     print_tictactoe()
 
                     time.sleep(5)
                     break
 
-            else:
+            else:  # 如果玩家输入错误，进行提示
                 os.system('cls')
-                print('\033[1;31;47m输错了1\033[0m')
+                print('\033[1;31;47m输错了\033[0m')
 
                 print_tictactoe()
                 time.sleep(5)
 
-        if win:
+        if win:  # 赢了等一会就跳出循环
             time.sleep(5)
             break

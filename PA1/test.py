@@ -1,3 +1,6 @@
-a = {'l1': '1'}
-a['l' + '1'] = 2
-print(a)
+def join():
+    print('1')
+def join1(b):
+    join()
+    return b
+print(join1(1))
