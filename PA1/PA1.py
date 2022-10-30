@@ -66,7 +66,7 @@ while True:
                                 print('消除了', a, '个格子的', 'X')
                                 time.sleep(5)
                             blank_tictactoe['blank' + a] = str(a) + ' '
-                        elif len(count_playerXO) > 4:
+                        if len(count_playerXO) > 4:
                             print('即将删除{}格子的 O'.format(count_playerXO[0]))
 
                     elif chose_mode == '1':  # 普通玩法
