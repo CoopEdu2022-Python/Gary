@@ -45,7 +45,7 @@ while True:
     count_playerXO = []  # 一个列表记录所有的棋子的位置
     os.system('cls')
     print_tictactoe()
-    choose_PVE_PVP = input('请选择游戏模式，(1)人机对战(player2为人机)，(2)人人对战)')
+    choose_PVE_PVP = input('请选择游戏模式，(1)人机对战(player2为人机)，(2)人人对战')
     if choose_PVE_PVP not in ['1', '2']:
         print('输错了')
         time.sleep(5)
@@ -191,3 +191,5 @@ while True:
         if win:  # 赢了等一会就跳出循环
             time.sleep(5)
             break
+
+
