@@ -28,9 +28,10 @@ def judge(X_O):  # 判断输赢
             blank_tictactoe['blank2'] == blank_tictactoe['blank5'] == blank_tictactoe['blank8'] == X_O + ' ' or \
             blank_tictactoe['blank0'] == blank_tictactoe['blank4'] == blank_tictactoe['blank8'] == X_O + ' ' or \
             blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == X_O + ' ':
+        os.system('cls')
         print('\033[5;36;47m玩家{}赢了，游戏结束\033[0m'.format(X_O))
         time.sleep(5)
-        os.system('cls')
+
         return True
 
 
@@ -61,11 +62,11 @@ while True:
                     if chose_mode == '2':  # 进阶玩法
 
                         if len(count_playerXO) > 5:  # 进阶玩法检测是否为六颗棋子在棋盘中，如果超过六颗删除第一颗
-                            a = str(count_playerXO.pop(0))
-                            if not judge('X'):  # 判断是否有玩家赢了,如果没有赢就说明消除了一颗棋子，并继续游戏
-                                print('消除了', a, '个格子的', 'X')
-                                time.sleep(5)
-                            blank_tictactoe['blank' + a] = str(a) + ' '
+                            delete_XO = str(count_playerXO.pop(0))
+
+                            print('消除了', delete_XO, '个格子的', 'X')
+                            time.sleep(5)
+                            blank_tictactoe['blank' + delete_XO] = str(delete_XO) + ' '
                         if len(count_playerXO) > 4:
                             print('即将删除{}格子的 O'.format(count_playerXO[0]))
 
@@ -125,13 +126,13 @@ while True:
                     if chose_mode == '2':
 
                         if len(count_playerXO) > 5:
-                            a = str(count_playerXO.pop(0))
-                            if not judge('O'):
-                                print('消除了', a,'格子的', 'O')
-                                time.sleep(5)
-                            blank_tictactoe['blank' + a] = str(a) + ' '
+                            delete_XO = str(count_playerXO.pop(0))
+
+                            print('消除了', delete_XO, '格子的', 'O')
+                            time.sleep(5)
+                            blank_tictactoe['blank' + delete_XO] = str(delete_XO) + ' '
                         if len(count_playerXO) > 4:
-                            print('即将删除{} 个格子的X'.format(count_playerXO[0]))
+                            print('即将删除:第{} 个格子的X'.format(count_playerXO[0]))
                     elif chose_mode == '1':  # 普通玩法
                         pass
                     else:
