@@ -20,27 +20,17 @@ def decide(XorO_input, X_O):  # 把玩家输入的数字转换成字典的键，
 
 
 def judge(X_O):  # 判断输赢
-    if blank_tictactoe['blank0'] == blank_tictactoe['blank1'] == blank_tictactoe['blank2'] == X_O+' ' or \
-            blank_tictactoe['blank3'] == blank_tictactoe['blank4'] == blank_tictactoe['blank5'] == X_O+' ' or \
-            blank_tictactoe['blank6'] == blank_tictactoe['blank7'] == blank_tictactoe['blank8'] == X_O+' ' or \
-            blank_tictactoe['blank0'] == blank_tictactoe['blank3'] == blank_tictactoe['blank6'] == X_O+' ' or \
-            blank_tictactoe['blank1'] == blank_tictactoe['blank4'] == blank_tictactoe['blank7'] == X_O+' ' or \
-            blank_tictactoe['blank2'] == blank_tictactoe['blank5'] == blank_tictactoe['blank8'] == X_O+' ' or \
-            blank_tictactoe['blank0'] == blank_tictactoe['blank4'] == blank_tictactoe['blank8'] == X_O+' ' or \
-            blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == X_O+' ':
-        print('\033[5;36;47m玩家X赢了，游戏结束\033[0m')
+    if blank_tictactoe['blank0'] == blank_tictactoe['blank1'] == blank_tictactoe['blank2'] == X_O + ' ' or \
+            blank_tictactoe['blank3'] == blank_tictactoe['blank4'] == blank_tictactoe['blank5'] == X_O + ' ' or \
+            blank_tictactoe['blank6'] == blank_tictactoe['blank7'] == blank_tictactoe['blank8'] == X_O + ' ' or \
+            blank_tictactoe['blank0'] == blank_tictactoe['blank3'] == blank_tictactoe['blank6'] == X_O + ' ' or \
+            blank_tictactoe['blank1'] == blank_tictactoe['blank4'] == blank_tictactoe['blank7'] == X_O + ' ' or \
+            blank_tictactoe['blank2'] == blank_tictactoe['blank5'] == blank_tictactoe['blank8'] == X_O + ' ' or \
+            blank_tictactoe['blank0'] == blank_tictactoe['blank4'] == blank_tictactoe['blank8'] == X_O + ' ' or \
+            blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == X_O + ' ':
+        print('\033[5;36;47m玩家{}赢了，游戏结束\033[0m'.format(X_O))
         time.sleep(5)
-        return True
-    elif blank_tictactoe['blank0'] == blank_tictactoe['blank1'] == blank_tictactoe['blank2'] == 'O ' or \
-            blank_tictactoe['blank3'] == blank_tictactoe['blank4'] == blank_tictactoe['blank5'] == 'O ' or \
-            blank_tictactoe['blank6'] == blank_tictactoe['blank7'] == blank_tictactoe['blank8'] == 'O ' or \
-            blank_tictactoe['blank0'] == blank_tictactoe['blank3'] == blank_tictactoe['blank6'] == 'O ' or \
-            blank_tictactoe['blank1'] == blank_tictactoe['blank4'] == blank_tictactoe['blank7'] == 'O ' or \
-            blank_tictactoe['blank2'] == blank_tictactoe['blank5'] == blank_tictactoe['blank8'] == 'O ' or \
-            blank_tictactoe['blank0'] == blank_tictactoe['blank4'] == blank_tictactoe['blank8'] == 'O ' or \
-            blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == 'O ':
-        print('\033[5;36;47m玩家O赢了，游戏结束\033[0m')
-        time.sleep(5)
+
         return True
 
 
@@ -62,7 +52,7 @@ while True:
     while True:  # 控制回合
 
         while True:  # 玩家X回合
-            player1 = input('玩家X请输入行数和列数的组合，如第一行第一列请输入0-8')
+            player1 = input('playerX:请输入想下棋的位置0-8')
 
             if player1 in ['0', '1', '2', '3', '4', '5', '6', '7', '8']:
                 os.system('cls')
@@ -72,10 +62,13 @@ while True:
 
                         if len(count_playerXO) > 5:  # 进阶玩法检测是否为六颗棋子在棋盘中，如果超过六颗删除第一颗
                             a = str(count_playerXO.pop(0))
-                            if not judge():  # 判断是否有玩家赢了,如果没有赢就说明消除了一颗棋子，并继续游戏
-                                print('消除了', a, 'X')
+                            if not judge('X'):  # 判断是否有玩家赢了,如果没有赢就说明消除了一颗棋子，并继续游戏
+                                print('消除了', a, '个格子的', 'X')
                                 time.sleep(5)
                             blank_tictactoe['blank' + a] = str(a) + ' '
+                        elif len(count_playerXO) > 4:
+                            print('即将删除{}格子的 O'.format(count_playerXO[0]))
+
                     elif chose_mode == '1':  # 普通玩法
                         pass
                     else:
@@ -85,7 +78,7 @@ while True:
                     if decide(player1, 'X '):
                         count_playerXO.append(player1)
 
-                    win = judge()
+                    win = judge('X')
                     if chose_mode == '1':  # 普通玩法
                         if len(count_playerXO) == 9:  # 标准玩法检测是否平局
                             if not win:
@@ -120,7 +113,7 @@ while True:
             break
 
         while True:
-            player2 = input('玩家O请输入行数和列数的组合，如第一行第一列请输入0-8')
+            player2 = input('playerO:请输入想下棋的位置0-8')
             if player2 in ['0', '1', '2', '3', '4', '5', '6', '7', '8']:
                 if chose_mode == '1':
                     if len(count_playerXO) == 9:
@@ -133,10 +126,12 @@ while True:
 
                         if len(count_playerXO) > 5:
                             a = str(count_playerXO.pop(0))
-                            if not judge():
-                                print('消除了', a, 'O')
+                            if not judge('O'):
+                                print('消除了', a,'格子的', 'O')
                                 time.sleep(5)
                             blank_tictactoe['blank' + a] = str(a) + ' '
+                        if len(count_playerXO) > 4:
+                            print('即将删除{} 个格子的X'.format(count_playerXO[0]))
                     elif chose_mode == '1':  # 普通玩法
                         pass
                     else:
@@ -146,7 +141,7 @@ while True:
                     if decide(player2, 'O '):
                         count_playerXO.append(player2)
 
-                    win = judge()
+                    win = judge('O')
                     if chose_mode == '1':  # 普通玩法
                         if len(count_playerXO) == 9:  # 标准玩法检测是否平局
                             if not win:
