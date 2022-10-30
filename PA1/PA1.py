@@ -60,7 +60,7 @@ while True:
     while True:  # 控制回合
 
         while True:  # 玩家X回合
-            player1 = input('playerX:请输入想下棋的位置0-8')
+            player1 = input('playerX:请输入想下棋的位置，0-8的整数')
 
             if player1 in ['0', '1', '2', '3', '4', '5', '6', '7', '8']:  # 判断用户输入是否正确
                 os.system('cls')
@@ -120,15 +120,15 @@ while True:
 
         while True:
             player2 = str()
-            if choose_PVE_PVP == '1':
+            if choose_PVE_PVP == '1':  # 如果选择模式1就进入人机模式
 
-                bot = str(random.randint(0, 8))
-                if bot in count_playerXO:
+                bot = str(random.randint(0, 8))  # 随意利用random随意复制一个数给bot
+                if bot in count_playerXO:  # 如果走了已经有棋的地方就再来一边
                     continue
                 player2 = bot
             elif choose_PVE_PVP == '2':
 
-                player2 = input('playerO:请输入想下棋的位置0-8')
+                player2 = input('playerO:请输入想下棋的位置，0-8的整数')
             if player2 in ['0', '1', '2', '3', '4', '5', '6', '7', '8']:
                 if chose_mode == '1':
                     if len(count_playerXO) == 9:
