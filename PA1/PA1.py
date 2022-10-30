@@ -1,5 +1,6 @@
 import os
 import time
+import random
 
 
 def print_tictactoe():  # 打印空的游戏图
@@ -44,6 +45,12 @@ while True:
     count_playerXO = []  # 一个列表记录所有的棋子的位置
     os.system('cls')
     print_tictactoe()
+    choose_PVE_PVP = input('请选择游戏模式，(1)人机对战(player2为人机)，(2)人人对战)')
+    if choose_PVE_PVP not in ['1', '2']:
+        print('输错了')
+        time.sleep(5)
+        continue
+
     chose_mode = input('请选择模式(1)普通玩法 (2)进阶玩法')
     if chose_mode not in ['1', '2']:  # 判断玩家的输入有没有错误
         print('输错了')
@@ -112,7 +119,16 @@ while True:
             break
 
         while True:
-            player2 = input('playerO:请输入想下棋的位置0-8')
+            player2 = str()
+            if choose_PVE_PVP == '1':
+
+                bot = str(random.randint(0, 8))
+                if bot in count_playerXO:
+                    continue
+                player2 = bot
+            elif choose_PVE_PVP == '2':
+
+                player2 = input('playerO:请输入想下棋的位置0-8')
             if player2 in ['0', '1', '2', '3', '4', '5', '6', '7', '8']:
                 if chose_mode == '1':
                     if len(count_playerXO) == 9:
