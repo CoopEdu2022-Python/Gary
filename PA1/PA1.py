@@ -30,7 +30,7 @@ def judge(X_O):  # 判断输赢
             blank_tictactoe['blank2'] == blank_tictactoe['blank4'] == blank_tictactoe['blank6'] == X_O + ' ':
         print('\033[5;36;47m玩家{}赢了，游戏结束\033[0m'.format(X_O))
         time.sleep(5)
-
+        os.system('cls')
         return True
 
 
