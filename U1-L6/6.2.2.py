@@ -1,12 +1,5 @@
-def MAX(s):
-    a = []
-    for i in s:
-        a.append(i)
-    a.sort()
-    b = a[-1] + 1
-    a.remove(a[-1])
-    a.append(b)
-    return a
+def plus_one(s):
+    s[len(s)]=s[len(s)]+1
+    return s
+print(plus_one([1,2,3]))
 
-
-print(MAX([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))

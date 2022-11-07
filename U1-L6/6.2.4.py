@@ -1,42 +1,40 @@
 def g(n):
     a = 0
     if 'IV' in n:
-        a=a+4
-        n.replace('IV','')
+        a = a + 4
+        n = n.replace('IV', '')
     if 'IX' in n:
-        a=a+9
-        n.replace('IX','')
+        a = a + 9
+        n = n.replace('IX', '')
     if 'XL' in n:
-        a=a+40
-        n.replace('XL','')
+        a = a + 40
+        n = n.replace('XL', '')
     if 'XC' in n:
-        a=a+90
-        n.replace('XC','')
+        a = a + 90
+        n = n.replace('XC', '')
     if 'CD' in n:
-        a=a+400
-        n.replace('CD','')
+        a = a + 400
+        n = n.replace('CD', '')
     if 'CM' in n:
-        a=a+900
-        n.replace('CM','')
-
+        a = a + 900
+        n = n.replace('CM', '')
 
     for i in n:
 
         if i == 'I':
-            a=a+1
+            a = a + 1
         elif i == 'V':
-            a=a+5
+            a = a + 5
         elif i == 'X':
-            a=a+10
+            a = a + 10
         elif i == 'L':
-            a=a+50
+            a = a + 50
         elif i == 'C':
-            a=a+100
+            a = a + 100
         elif i == 'D':
-            a=a+500
+            a = a + 500
         elif i == 'M':
-            a=a+1000
-
+            a = a + 1000
 
     return a
 

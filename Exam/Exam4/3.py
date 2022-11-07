@@ -9,7 +9,7 @@ def inverse(n, str='1234567896edrgfdnh'):
 
     for k in new_list:
         new_list1.append(k[::-1])
-    return new_list1
+    return ''.join(new_list1)
 
 
 print(inverse(11))

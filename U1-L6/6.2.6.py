@@ -5,7 +5,7 @@ def a(columnNumber, colcolumnNumber=None):
     else:
         r = []
         e = ''
-        for i in range(1,columnNumber // 26):
+        for i in range(1,(columnNumber // 26)+1):
             r.append(b[i])
             columnNumber-=columnNumber // 26**i
         print(r)
