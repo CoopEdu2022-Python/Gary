@@ -11,8 +11,10 @@
 
 
 print(reverse_vowels('CoopEdu2022'))'''
+
+
 def reverse_vowels(s):
-    vowels=[]
+    vowels = []
     for char in s:
         if char in 'aeiouAEIOU':
             vowels.append(char)
