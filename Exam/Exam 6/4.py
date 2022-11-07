@@ -9,8 +9,8 @@ def max_sec_average(l, n):
         u = 0
         for y in g:
             u += y
-        v.append(u / n)
-    return max(v)
+        v.append(u)
+    return max(v)/n
 
 
 print(max_sec_average([1, 12, -5, -6, 50, 3], 4))

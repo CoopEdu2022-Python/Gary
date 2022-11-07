@@ -16,7 +16,7 @@ def perms(l):
     for d in a:
         if d not in b:
             b.append(d)
-    return b,len(b)
+    return b, len(b)
 
 
 print(perms([1, 2, 3, 4, 5]))
