@@ -5,7 +5,7 @@ class User:
         self.credits = int(credits)
 
     def upgrade_to_vip(self):
-        self = Vip
+
 
     def get_info(self):
         print(self.nickname)

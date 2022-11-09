@@ -16,3 +16,7 @@ class Segment:
         final = math.sqrt(
             ((int(self.__xy1[0])) - int(self.__xy2[0])) ** 2 + ((int(self.__xy1[1])) - int(self.__xy2[1])) ** 2)
         print(final)
+
+
+s = Segment('2,5', '3,5')
+s.get_len()

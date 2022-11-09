@@ -5,4 +5,6 @@ class People:
 
 class Infrant(People):
     def talk(self):
-        pass
+        self.__a=1
+s1 = Infrant
+s1.talk(7)

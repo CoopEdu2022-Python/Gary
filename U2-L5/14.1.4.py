@@ -10,4 +10,5 @@ class B(A):
 
 class C(B):
     # write code here
-   pass
+    def __init__(self):
+        super(A,self).test()
