@@ -20,7 +20,7 @@ class Fruit:
     def __another_secret(self):
         print(self.__real_name)
 '''
-实力属性2
+实力属性4
 实例方法4
 私有实例属性2
 实例属性2

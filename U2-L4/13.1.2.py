@@ -5,9 +5,9 @@ class Exam:
         self.end_time = end_time
         self.points = points
 class Test(Exam):
-    def change(self):
-        del self.start_time
-        del self.end_time
-        self.__points = 10
+    def __init__(self,id,points):
+        self.id = id
+        self.__points = points
+
 
 
