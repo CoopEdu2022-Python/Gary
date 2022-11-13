@@ -1,18 +1,13 @@
 class A:
-    def __init__(self):
-        print("A")
+    pass
 
 
 class B(A):
-    def __init__(self):
-        super(B, self).__init__()
-        print("B")
+    pass
 
 
 class C(A):
-    def __init__(self):
-        super(C, self).__init__()
-        print("C")
+    pass
 
 
 class D(B, C):
@@ -21,6 +16,5 @@ class D(B, C):
 
 d = D()
 '''
-
 B --> A --> C --> A --> D
 '''

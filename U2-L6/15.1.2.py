@@ -30,7 +30,9 @@ class Bigfish(Fish):
         self.hp = self.hp - (abs(x) + abs(y))
 
     def eat(self):
-        self.hp = self.hp + 1
+        self.hp = self.hp + 20
+        if self.hp > 100:
+            self.hp = 100
 
 
 class SmallFish(Fish):
@@ -46,7 +48,6 @@ class SmallFish(Fish):
             self.y = self.judge(self.y)
 
 
-small_finsh = SmallFish()
 big_fish = Bigfish()
 small_finshes = list()
 for i in range(10):
@@ -62,6 +63,6 @@ while big_fish.hp > 0 and small_finshes != []:
     for i in eaten_fishes:
         del small_finshes[i]
     if big_fish.hp <= 0:
-        print('没体力了')
+        print('大鱼死了')
     if small_finshes:
-        print('没小🐟了')
+        print('吃完了')
