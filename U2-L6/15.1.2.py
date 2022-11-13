@@ -61,7 +61,7 @@ while big_fish.hp > 0 and small_finshes != []:
             big_fish.eat()
             eaten_fishes.append(i)
     for i in eaten_fishes:
-        del small_finshes[i]
+        small_finshes.remove(small_finshes[i])
     if big_fish.hp <= 0:
         print('大鱼死了')
     if small_finshes:
