@@ -2,6 +2,7 @@ def gcd_pro_max_2(*n):
     while
         a=0
         h = sorted(n)
+
         for i in n:
             a+=i
         if h[0]*len(n)==a:
