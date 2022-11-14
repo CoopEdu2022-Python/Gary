@@ -7,7 +7,7 @@ def gcd_pro_max_2(*n):
         elif h[i+1] == p:
             a=a+1
         else:
-            h[i] = h
+            h[i] = h[i] % h[i+1]
     if a == len(a)+1:
         return True
 
