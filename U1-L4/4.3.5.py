@@ -10,7 +10,7 @@ def h(num):
             a = '*' * i
             d += (' ' * (2 * num - 1 - i))
 
-            r
+            
         for n in range(2 * num - 3, 0, -2):
             c = '*' * n
 
