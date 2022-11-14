@@ -8,11 +8,9 @@ class Animal:
 class Manager:
     def __init__(self, health):
         self.animal = Animal(health)
-        self.animal = self.animal.health
 
     def feed(self):
         self.animal.health += 20
-
 
     def perform(self):
         self.animal.health -= 10
@@ -22,12 +20,12 @@ class Manager:
             return value
 
 
-
 class Keeper(Manager):
-    def __init__(self, performance):
+    def __init__(self, performance, health):
         super().__init__(health)
+
         self.performance = performance
-        if self.health < 80:
+        if self.animal.health < 80:
             self.performance -= 20
 
     def perform(self):
@@ -40,8 +38,9 @@ class Keeper(Manager):
 class Trainer(Manager):
     def __init__(self, performance, health):
         super().__init__(health)
+
         self.performance = performance
-        if self.health < 80:
+        if self.animal.health < 80:
             self.performance -= 20
 
     def feed(self):
@@ -49,16 +48,15 @@ class Trainer(Manager):
 
     def inspect(self, value):
         print('没有这个方法')
+
+
 def everyday():
     dog = Animal(100)
-    manager = Manager(100)
-    keeper = Keeper(100, 100)
-    trainer = Trainer(100, 100)
+    manager = Manager(dog.health)
+    keeper = Keeper(manager.inspect(80), dog.health)
+    trainer = Trainer(manager.inspect(90), dog.health)
     manager.feed()
     keeper.perform()
+    keeper.feed()
+    trainer.feed()
     trainer.perform()
-
-
-
-
-
