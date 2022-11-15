@@ -22,6 +22,6 @@ def gcd_pro_max_1(*n):
             h[i] = h[i + 1]
         else:
             h[i] = h[i] % h[i + 1]
-            return gcd_pro_max_1(*h)
+        return gcd_pro_max_1(*h)
 
 
