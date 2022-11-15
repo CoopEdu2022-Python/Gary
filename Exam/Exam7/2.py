@@ -60,3 +60,6 @@ def everyday():
     keeper.feed()
     trainer.feed()
     trainer.perform()
+    print(dog.health)
+
+everyday()
