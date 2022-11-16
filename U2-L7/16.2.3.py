@@ -38,12 +38,12 @@ round = 0
 
 
 def game(rounds, v):
-    n1 = 100
-    n2 = 0
+    n1 = 0
+    n2 = 100
     dealer = Dealer()
     a = dealer.set_number()
     player = Player(v)
-    b = player.guess_number()
+    b = player.guess_number(n1,n2)
     if dealer.hint(b)=='low':
         n1+=1
         n2+=1
