@@ -11,14 +11,37 @@ class Dealer:
 
     def hint(self, n):
         if self.number > n:
-            return "Too low"
+            print("Too low")
         elif self.number < n:
-            return "Too high"
+            print('Too high')
         else:
-            return "Correct"
+            print('correct')
+            return True
 
     def award(self, rounds):
         return 10 - rounds
 
+
 class Player:
-    def __init__(self, name):
+    def __init__(self, point):
+        self.point = point
+
+    def guess_number(self):
+        return random.randint(0, 100)
+
+
+def game(rounds, v):
+    dealer = Dealer()
+    a = dealer.set_number()
+    player = Player(v)
+    b = player.guess_number()
+    if dealer.hint(b):
+        dealer.award(rounds)
+
+
+game(1, 100)
+
+#2
+rounds = 0
+while True:
+    rounds +=1
