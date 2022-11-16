@@ -30,15 +30,20 @@ class Player:
         return random.randint(0, 100)
 
 
+scores = 0
+round = 0
+
+
 def game(rounds, v):
     dealer = Dealer()
     a = dealer.set_number()
     player = Player(v)
     b = player.guess_number()
     if dealer.hint(b):
-        return dealer.award(rounds)
+        scores = dealer.award(rounds)
+        global scores
 
 
-game(1, 100)
-
-
+while scores >= -10:
+    round = round + 1
+    game(round, scores)
