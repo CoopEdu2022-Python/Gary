@@ -17,3 +17,10 @@ class list:
     def peek(self):
         return self.list[0]
 
+    def max(self):
+
+        for i in range(self.length):
+            if self.list[i] > self.list[i+1]:
+                self.list[i], self.list[i+1] = self.list[i+1], self.list[i]
+
+
