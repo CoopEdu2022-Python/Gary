@@ -28,9 +28,8 @@ class Player:
     def __init__(self, point):
         self.point = point
 
-
-    def guess_number(self,n1,n2):
-        return random.randint(n1, n2+1)
+    def guess_number(self, n1, n2):
+        return random.randint(n1, n2 + 1)
 
 
 scores = 0
@@ -43,18 +42,18 @@ def game(rounds, v):
     dealer = Dealer()
     a = dealer.set_number()
     player = Player(v)
-    b = player.guess_number(n1,n2)
-    if dealer.hint(b)=='low':
-        n1+=1
-        n2+=1
+    b = player.guess_number(n1, n2)
+    if dealer.hint(b) == 'low':
+        n1 += 1
+        n2 += 1
     elif dealer.hint(b) == 'high':
-        n1-=1
-        n2-=1
+        n1 -= 1
+        n2 -= 1
 
 
     elif dealer.hint(b):
         scores = dealer.award(rounds)
         global scores
 
-game(1,100)
 
+game(1, 100)

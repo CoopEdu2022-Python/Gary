@@ -34,16 +34,19 @@ scores = 0
 round = 0
 
 
-def game(rounds, v):
-    dealer = Dealer()
+dealer = Dealer()
+player = Player(scores)
+def game(dealer,player):
+
     a = dealer.set_number()
-    player = Player(v)
+
     b = player.guess_number()
     if dealer.hint(b):
-        scores = dealer.award(rounds)
         global scores
+        scores = dealer.award(rounds)
 
 
 while scores >= -10:
     round = round + 1
     game(round, scores)
+    print(scores)
