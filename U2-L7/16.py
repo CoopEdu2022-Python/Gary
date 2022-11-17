@@ -9,7 +9,7 @@ class list:
         self.length = self.length + 1
 
     def delappend(self):
-        a = self.list.pop(0)
+        a = self.list.pop(self.front)
         self.length = self.length - 1
         self.front = self.front + 1
         return a
