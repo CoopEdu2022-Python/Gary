@@ -23,8 +23,8 @@ class Dealer:
 
 
 class Player:
-    def __init__(self, point):
-        self.point = point
+    def __init__(self):
+        self.point = 0
 
     def guess_number(self):
         return random.randint(0, 100)
@@ -35,18 +35,10 @@ round = 0
 
 
 dealer = Dealer()
-player = Player(scores)
+player = Player()
 def game(dealer,player):
-
-    a = dealer.set_number()
-
-    b = player.guess_number()
-    if dealer.hint(b):
-        global scores
-        scores = dealer.award(rounds)
+    pass
 
 
-while scores >= -10:
-    round = round + 1
-    game(round, scores)
-    print(scores)
+
+
