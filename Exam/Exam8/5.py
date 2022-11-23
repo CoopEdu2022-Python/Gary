@@ -1,8 +1,8 @@
 def largest_perimeter(nums: list) -> int:
-    nums.sort()
-    a=nums[0]+nums[1]
-    if a<=nums[2]:
-        return 0
-    else:
-        return nums[0]+nums[1]+nums[2]
+    nums.sort(reverse=True)
+    for i in range(len(nums) - 2):
+        if nums[i]-nums[i+1]<nums[i+2]:
+            return nums[i]+nums[i+1]+nums[i+2]
+
+
 print(largest_perimeter([2,1,2]))
