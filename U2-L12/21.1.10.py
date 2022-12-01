@@ -1,11 +1,15 @@
-a = open('bad_boy.py', 'r+')
-b=a.readlines()
-c=[]
-for i in range(len(b)):
-    if b[i].startswith('    '):
-        c.append(b[i])
-    elif b[i].startswith('   '):
-        c.append(b[i][1:])
+a = 1
+for i in range(10):
+  a += 1
+  print(a)
+for i in range(10):
+    a -= 1
+    print(a)
+    if a == 5:
+      print(a)
+      break
     else:
-        c.append(b[i])
-print(c)
+        if a == 7:
+            print(a)
+            break
+print(a)
