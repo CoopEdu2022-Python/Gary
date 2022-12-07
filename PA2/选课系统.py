@@ -58,13 +58,14 @@ class Officer:
     def seeprofile(self):
         pass
 
-    def creatstudent(self,name,credit):
-
+    def creatstudent(self, name, credit):
         pass
+
     def changecourse(self):
         pass
 
     def seecourse(self):
         pass
+
     def seestucourse(self):
         pass
