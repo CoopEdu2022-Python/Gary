@@ -5,8 +5,8 @@ class officer:
     def __init__(self, name):
         self.name = name
 
-    def createstudent(self, name, credit):
-        return name, credit
+    def createstudent(self, name, credit, lesson, password):
+        return name, credit, lesson, password
 
     def setcredit(self, name, credit):
         return name, credit

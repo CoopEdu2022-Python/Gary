@@ -1,4 +1,6 @@
 import systempackage
+
+
 def student(name):
     newstudent = systempackage.student.Student(name)
     print("请选择您要进行的操作：\n1.选课\n2.退课\n3.查看课程\n4.退出")
@@ -18,12 +20,20 @@ def student(name):
         systempackage.loginsystem.insystem().logout()
     else:
         print('输入错误，请重新输入')
+
+
 def officer(name):
     newofficer = systempackage.officer.officer(name)
-    print("请选择您要进行的操作：\n1.查看所有课程\n2.查看所有学生\n3.查看所有老师\n4.退出")
+    print("请选择您要进行的操作：\n1.创建学生\n2.设置学分要求\n3.查看所有老师\n4.退出")
     choice = input("请输入您的选择：")
     if choice == '1':
-        newofficer.createofficer()
+        name = input('请输入要创建的学生姓名')
+        credit = input('请输入要创建的学生学分')
+        lesson = input('请输入要创建的学生预分配课程')
+        password = input('请输入要创建的学生密码')
+        new_stu_info = newofficer.createstudent(name, credit, lesson, password)
+        systempackage.student.Student.createstudent(new_stu_info[0], new_stu_info[1], new_stu_info[2], new_stu_info[3])
+        print('创建成功')
     elif choice == '2':
         newofficer.setcredit()
     elif choice == '3':
@@ -40,6 +50,8 @@ def officer(name):
         systempackage.loginsystem.insystem().logout()
     else:
         print('输入错误，请重新输入')
+
+
 def welcome():
     print("Welcome to the system\n请登录")
     type = input("请输入您的身份：(student/officer)")
@@ -58,5 +70,3 @@ def welcome():
             print('登录失败')
     else:
         print('登录失败')
-
-

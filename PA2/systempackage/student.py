@@ -1,9 +1,6 @@
 import os
 
 
-
-
-
 class Student:
     def __init__(self, name):
         self.name = name
@@ -12,18 +9,17 @@ class Student:
             if i[0:6] == 'course:':
                 self.courselist.append(i[5:])
 
-    def createstudent(self, name, credit,lesson,password):
+    @staticmethod
+    def createstudent(name, credit, lesson, password):
         studentinfo = open('student:' + name + '.txt', 'w')
         studentinfo.write('Name:' + name + '\n')
         studentinfo.write('Credit:' + str(credit))
-        studentinfo.write('lessons:'+str(lesson))
-        studentinfo.write('password:'+str(password))
+        studentinfo.write('lessons:' + str(lesson))
+        studentinfo.write('password:' + str(password))
 
     def addcourse(self, course):
 
-
         if course in self.courselist:
-
 
             courseinfor = open('course:' + course + '.txt', 'r+')
             all = courseinfor.readlines()
