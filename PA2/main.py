@@ -27,15 +27,17 @@ def officer(name):
     print("请选择您要进行的操作：\n1.创建学生\n2.设置学分要求\n3.查看所有老师\n4.退出")
     choice = input("请输入您的选择：")
     if choice == '1':
-        name = input('请输入要创建的学生姓名')
+        _name = input('请输入要创建的学生姓名')
         credit = input('请输入要创建的学生学分')
         lesson = input('请输入要创建的学生预分配课程')
         password = input('请输入要创建的学生密码')
-        new_stu_info = newofficer.createstudent(name, credit, lesson, password)
+        new_stu_info = newofficer.createstudent(_name, credit, lesson, password)
         systempackage.student.Student.createstudent(new_stu_info[0], new_stu_info[1], new_stu_info[2], new_stu_info[3])
         print('创建成功')
     elif choice == '2':
-        newofficer.setcredit()
+        _name = input('请输入要设置学分要求的学生姓名')
+        credit = input('请输入要设置的学分要求')
+        newofficer.setcredit(_name, credit)
     elif choice == '3':
         newofficer.seeprofile()
     elif choice == '4':

@@ -2,12 +2,13 @@ import os
 
 
 class Student:
+    courselist = []
+    for i in os.listdir():
+        if i[0:6] == 'course:':
+            courselist.append(i[5:])
     def __init__(self, name):
         self.name = name
-        self.courselist = []
-        for i in os.listdir():
-            if i[0:6] == 'course:':
-                self.courselist.append(i[5:])
+
 
     @staticmethod
     def createstudent(name, credit, lesson, password):
@@ -74,3 +75,14 @@ class Student:
             courseinfor.close()
         else:
             print('没有这节课')
+    @staticmethod
+
+    def set_credit(name,credit):
+        studentinfo = open('student:' + name + '.txt', 'r+')
+        all = studentinfo.readlines()
+        all[1] = 'Credit:' + str(credit)
+        studentinfo.close()
+        studentinfo = open('student:' + name + '.txt', 'w')
+        studentinfo.writelines(all)
+        studentinfo.close()
+        print('学分设置成功')
