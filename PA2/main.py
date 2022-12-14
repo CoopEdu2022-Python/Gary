@@ -53,9 +53,10 @@ def officer(name):
     elif choice == '7':
         _name = input('请输入要创建officer的姓名')
         _password = input('请输入要创建officer的密码')
-        newofficer.createofficer()
+        newofficer.createofficer(_name, _password)
     elif choice == '8':
         systempackage.loginsystem.insystem().logout()
+        return False
     else:
         print('输入错误，请重新输入')
 
@@ -68,13 +69,25 @@ def welcome():
     if systempackage.loginsystem.insystem().login(type) == 'student':
         if systempackage.loginsystem.insystem().verity(name, password) == 'student':
             print('登录成功')
-            student(name)
+            control = student(name)
+            if control == False:
+                return False
+
         else:
             print('登录失败')
-    if systempackage.loginsystem.insystem().login(type) == 'officer':
+    elif systempackage.loginsystem.insystem().login(type) == 'officer':
         if systempackage.loginsystem.insystem().verity(name, password) == 'officer':
             print('登录成功')
+            control = officer(name)
+            if control == False:
+                return False
         else:
             print('登录失败')
     else:
         print('登录失败')
+
+
+while True:
+    welcome()
+    if not welcome():
+        continue
