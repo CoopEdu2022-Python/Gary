@@ -7,11 +7,11 @@ def find_shortest_subarray(nums: list[int]) -> int:
         maxnum.append(a)
     a=max(maxnum)
     h=maxnum.index(a)
+    h1 = maxnum[::-1].index(a)
     max1=nums[h]
-    while nums.count(max1)>0:
-        nums.remove(max1)
-    for k in range(len(nums)):
-        pass
+    nums1=nums
+    nums1.remove(nums[h:h1])
+
 
 
 

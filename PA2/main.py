@@ -39,9 +39,11 @@ def officer(name):
         credit = input('请输入要设置的学分要求')
         newofficer.setcredit(_name, credit)
     elif choice == '3':
-        newofficer.seeprofile()
+        _name = input('请输入要查看学生的姓名')
+        newofficer.seeprofile(_name)
     elif choice == '4':
-        newofficer.changecourse()
+        _course = input('请输入要修改的课程名称')
+        newofficer.changecourse(_course)
     elif choice == '5':
         newofficer.seecourse()
     elif choice == '6':
