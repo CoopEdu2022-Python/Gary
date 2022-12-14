@@ -45,10 +45,14 @@ def officer(name):
         _course = input('请输入要修改的课程名称')
         newofficer.changecourse(_course)
     elif choice == '5':
-        newofficer.seecourse()
+        _course = input('请输入要查看的课程名称')
+        newofficer.seecourse(_course)
     elif choice == '6':
-        newofficer.seestucourse()
+        _name = input('请输入要查看的学生姓名')
+        newofficer.seestucourse(_name)
     elif choice == '7':
+        _name = input('请输入要创建officer的姓名')
+        _password = input('请输入要创建officer的密码')
         newofficer.createofficer()
     elif choice == '8':
         systempackage.loginsystem.insystem().logout()
