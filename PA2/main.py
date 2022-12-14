@@ -37,7 +37,8 @@ def officer(name):
     elif choice == '2':
         _name = input('请输入要设置学分要求的学生姓名')
         credit = input('请输入要设置的学分要求')
-        newofficer.setcredit(_name, credit)
+        back, back1 = newofficer.setcredit(_name, credit)
+        systempackage.student.Student.set_credit(back, back1)
     elif choice == '3':
         _name = input('请输入要查看学生的姓名')
         newofficer.seeprofile(_name)
