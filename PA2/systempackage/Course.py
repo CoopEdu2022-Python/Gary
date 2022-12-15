@@ -1,10 +1,14 @@
-courselist = []
 
+import os
 
 class Course:
+    courselist = []
+    for i in os.listdir():
+        if i[0:6] == 'course:':
+            courselist.append(i[5:])
     def creatcourse(self, name, studentlist, teacher, coursetype, credit, studentnum):
 
-        if name not in courselist:
+        if name not in self.courselist:
             courseinfor = open('course:'+name + '.txt', 'w')
             courseinfor.write('Course name: ' + name + '\n')
             courseinfor.write('Teacher: ' + teacher + '\n')
@@ -14,7 +18,7 @@ class Course:
             studentlist = ''.join(str(i) + ',' for i in studentlist)
             courseinfor.write('Student list: {}\n'.format(studentlist))
             courseinfor.close()
-            courselist.append(name)
+
         else:
             print('名称已经用过')
 

@@ -12,11 +12,18 @@ class Student:
 
     @staticmethod
     def createstudent(name, credit, lesson, password):
-        studentinfo = open('student:' + name + '.txt', 'w')
-        studentinfo.write('Name:' + name + '\n')
-        studentinfo.write('Credit:' + str(credit))
-        studentinfo.write('lessons:' + str(lesson))
-        studentinfo.write('password:' + str(password))
+        with open('student:' + name + '.txt', 'w') as student_info:
+            student_info.write('Name:' + name + '\n')
+            student_info.write('Credit:' + str(credit))
+            student_info.write('lessons:' + str(lesson))
+            student_info.write('password:' + str(password))
+        with open('course_select_report:' + name + '.txt', 'w') as select_report:
+            select_report.write('Name:' + name + '\n')
+            select_report.write('Required_Credit:' + str(credit))
+            select_report.write('Selected_Credit:' + str(0))
+            select_report.write('lessons:' + str(lesson))
+
+
 
     def addcourse(self, course):
 
@@ -28,6 +35,9 @@ class Student:
             studentlist = all[5][14:-1].split(',')[0:-1]
 
             studentnum = all[4][16:-1]
+            course_credit = all[3][8:-1]
+            course_type = all[2][12:-1]
+
 
             if self.name in studentlist:
                 print('你已经选过这门课了')
@@ -43,10 +53,13 @@ class Student:
 
             courseinfor.close()
 
+
+
+
         else:
             print('没有这节课')
 
-    def dropcourse(self, course):
+    def drop_course(self, course):
 
         if course in self.courselist:
             courseinfor = open('course:' + course + '.txt', 'r+')
@@ -78,11 +91,11 @@ class Student:
 
     @staticmethod
     def set_credit(name, credit):
-        studentinfo = open('student:' + name + '.txt', 'r+')
-        all = studentinfo.readlines()
+        student_info = open('student:' + name + '.txt', 'r+')
+        all = student_info.readlines()
         all[1] = 'Credit:' + str(credit)
-        studentinfo.close()
-        studentinfo = open('student:' + name + '.txt', 'w')
-        studentinfo.writelines(all)
-        studentinfo.close()
+        student_info.close()
+        student_info = open('student:' + name + '.txt', 'w')
+        student_info.writelines(all)
+        student_info.close()
         print('学分设置成功')

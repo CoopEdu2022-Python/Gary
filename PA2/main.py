@@ -11,7 +11,7 @@ def student(name):
         newstudent.addcourse(course)
     if choice == '2':
         course = input("请输入您要退的课程：")
-        newstudent.dropcourse(course)
+        newstudent.drop_course(course)
     if choice == '3':
         course = input("请输入您要查看的课程：")
         newstudent.seestucourse(course)
@@ -71,7 +71,7 @@ def welcome():
         if systempackage.loginsystem.insystem().verity(name, password) == 'student':
             print('登录成功')
             control = student(name)
-            if control == False:
+            if not control:
                 return False
 
         else:
@@ -80,7 +80,7 @@ def welcome():
         if systempackage.loginsystem.insystem().verity(name, password) == 'officer':
             print('登录成功')
             control = officer(name)
-            if control == False:
+            if not control:
                 return False
         else:
             print('登录失败')
