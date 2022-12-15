@@ -11,19 +11,46 @@ class Student:
         self.name = name
 
     @staticmethod
+    def sync(name):
+        with open('student:' + name + '.txt', 'r') as f:
+            all = f.readlines()
+            type = []
+            Selected_Credit = []
+            credit = all[1][8:-1]
+            lesson = all[2][8:-1]
+            for i in range(len(lesson)):
+                for i in os.listdir():
+                    if i[8:-4] in lesson:
+                        with open(i, 'r') as f:
+                            a = f.readlines()
+                            type.append(a[2][14:-1])
+                            Selected_Credit.append(a[3][8:-1])
+            return type, Selected_Credit, credit, lesson
+
+    @staticmethod
     def createstudent(name, credit, lesson, password):
         with open('student:' + name + '.txt', 'w') as student_info:
             student_info.write('Name:' + name + '\n')
-            student_info.write('Credit:' + str(credit))
+            student_info.write('Required_Credit:' + str(credit))
             student_info.write('lessons:' + str(lesson))
             student_info.write('password:' + str(password))
         with open('course_select_report:' + name + '.txt', 'w') as select_report:
+            type, Selected_Credit, _credit, _lesson = Student.sync(name)
+
             select_report.write('Name:' + name + '\n')
+            select_report.write('Required_Credit:' + str(_credit))
+            select_report.write('Selected_Credit:' + str(Selected_Credit))
+            select_report.write('type:' + str(type))
+            select_report.write('lessons:' + str(_lesson))
+
+    def update(self):
+        type, Selected_Credit, credit, lesson = Student.sync(self.name)
+        with open('course_select_report:' + self.name + '.txt', 'w') as select_report:
+            select_report.write('Name:' + self.name + '\n')
             select_report.write('Required_Credit:' + str(credit))
-            select_report.write('Selected_Credit:' + str(0))
+            select_report.write('Selected_Credit:' + str(Selected_Credit))
+            select_report.write('type:' + str(type))
             select_report.write('lessons:' + str(lesson))
-
-
 
     def addcourse(self, course):
 
@@ -38,7 +65,6 @@ class Student:
             course_credit = all[3][8:-1]
             course_type = all[2][12:-1]
 
-
             if self.name in studentlist:
                 print('你已经选过这门课了')
             elif len(studentlist) >= int(studentnum):
@@ -50,8 +76,10 @@ class Student:
                 courseinfor = open('course:' + course + '.txt', 'w')
                 courseinfor.writelines(all)
                 print('选课成功')
+                self.update()
 
             courseinfor.close()
+
 
 
 
@@ -74,6 +102,7 @@ class Student:
                 courseinfor = open('course:' + course + '.txt', 'w')
                 courseinfor.writelines(all)
                 print('退课成功')
+                self.update()
             else:
                 print('你没有选这门课')
             courseinfor.close()
