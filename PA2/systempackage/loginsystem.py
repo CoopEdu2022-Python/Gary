@@ -11,6 +11,7 @@ class insystem:
             studentlist.append(i[9:])
         elif i.startswith('officer:'):
             officerlist.append(i[9:])
+
     @staticmethod
     def login(type):
 
@@ -45,6 +46,7 @@ class insystem:
                 print('密码错误')
         else:
             print('没有此用户')
+
     @staticmethod
     def logout():
         print('退出成功')
