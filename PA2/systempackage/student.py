@@ -56,8 +56,8 @@ class Student:
 
         if course in self.courselist:
 
-            courseinfor = open('course:' + course + '.txt', 'r+')
-            all = courseinfor.readlines()
+            course_info = open('course:' + course + '.txt', 'r+')
+            all = course_info.readlines()
 
             studentlist = all[5][14:-1].split(',')[0:-1]
 
@@ -72,13 +72,13 @@ class Student:
             else:
                 studentlist.append(self.name)
                 all[5] = ('Student list: {}'.format(''.join(str(i) + ',' for i in studentlist)))
-                courseinfor.close()
-                courseinfor = open('course:' + course + '.txt', 'w')
-                courseinfor.writelines(all)
+                course_info.close()
+                course_info = open('course:' + course + '.txt', 'w')
+                course_info.writelines(all)
                 print('选课成功')
                 self.update()
 
-            courseinfor.close()
+            course_info.close()
 
 
 
