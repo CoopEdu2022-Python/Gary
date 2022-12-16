@@ -8,7 +8,7 @@ def student(name):
     if choice == '1':
         print("选课")
         course = input("请输入您要选的课程：")
-        newstudent.addcourse(course)
+        newstudent.add_course(course)
     if choice == '2':
         course = input("请输入您要退的课程：")
         newstudent.drop_course(course)

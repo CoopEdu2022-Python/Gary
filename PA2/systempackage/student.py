@@ -52,31 +52,40 @@ class Student:
             select_report.write('type:' + str(type))
             select_report.write('lessons:' + str(lesson))
 
-    def addcourse(self, course):
+    def add_course(self, course):
 
         if course in self.courselist:
 
             course_info = open('course:' + course + '.txt', 'r+')
             all = course_info.readlines()
 
-            studentlist = all[5][14:-1].split(',')[0:-1]
+            student_list = all[5][14:-1].split(',')[0:-1]
 
-            studentnum = all[4][16:-1]
+            student_num = all[4][16:-1]
             course_credit = all[3][8:-1]
             course_type = all[2][12:-1]
 
-            if self.name in studentlist:
+            if self.name in student_list:
                 print('你已经选过这门课了')
-            elif len(studentlist) >= int(studentnum):
+            elif len(student_list) >= int(student_num):
                 print('这门课已经满了')
             else:
-                studentlist.append(self.name)
-                all[5] = ('Student list: {}'.format(''.join(str(i) + ',' for i in studentlist)))
+                student_list.append(self.name)
+                all[5] = ('Student list: {}'.format(''.join(str(i) + ',' for i in student_list)))
                 course_info.close()
                 course_info = open('course:' + course + '.txt', 'w')
                 course_info.writelines(all)
                 print('选课成功')
+                course_info.close()
                 self.update()
+                with open('course_select_report:' + self.name + '.txt', 'r') as course_select_report:
+                    all = course_select_report.readlines()
+                    if 'required' not in list(all[3][5:-1]):
+                        print('你没有选必修课')
+                    if 'optional' not in list(all[3][5:-1]):
+                        print('你没有选选修课')
+                    if int(all[1][16:-1]) < int(all[2][16:-1]):
+                        print('你的学分不够')
 
             course_info.close()
 
