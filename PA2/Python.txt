@@ -1,6 +1,0 @@
-Course name: Python
-Teacher: Wang
-Course type: re
-Credit: 3
-Student number: 3
-Student list: Zhang,Li,
