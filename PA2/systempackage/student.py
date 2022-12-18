@@ -28,7 +28,7 @@ class Student:
             return type, Selected_Credit, credit, lesson
 
     @staticmethod
-    def createstudent(name, credit, lesson, password):
+    def create_student(name, credit, lesson, password):
         with open('student:' + name + '.txt', 'w') as student_info:
             student_info.write('Name:' + name + '\n')
             student_info.write('Required_Credit:' + str(credit))
@@ -43,10 +43,11 @@ class Student:
             select_report.write('type:' + str(type))
             select_report.write('lessons:' + str(_lesson))
 
-    def update(self):
-        type, Selected_Credit, credit, lesson = Student.sync(self.name)
-        with open('course_select_report:' + self.name + '.txt', 'w') as select_report:
-            select_report.write('Name:' + self.name + '\n')
+    @staticmethod
+    def update(name):
+        type, Selected_Credit, credit, lesson = Student.sync(name)
+        with open('course_select_report:' + name + '.txt', 'w') as select_report:
+            select_report.write('Name:' + name + '\n')
             select_report.write('Required_Credit:' + str(credit))
             select_report.write('Selected_Credit:' + str(Selected_Credit))
             select_report.write('type:' + str(type))
@@ -64,7 +65,7 @@ class Student:
             student_num = all[4][16:-1]
             course_credit = all[3][8:-1]
             course_type = all[2][12:-1]
-
+            course_info.close()
             if self.name in student_list:
                 print('你已经选过这门课了')
             elif len(student_list) >= int(student_num):
@@ -78,6 +79,7 @@ class Student:
                 print('选课成功')
                 course_info.close()
                 self.update()
+
                 with open('course_select_report:' + self.name + '.txt', 'r') as course_select_report:
                     all = course_select_report.readlines()
                     if 'required' not in list(all[3][5:-1]):
@@ -87,7 +89,7 @@ class Student:
                     if int(all[1][16:-1]) < int(all[2][16:-1]):
                         print('你的学分不够')
 
-            course_info.close()
+
 
 
 
@@ -136,4 +138,5 @@ class Student:
         student_info = open('student:' + name + '.txt', 'w')
         student_info.writelines(all)
         student_info.close()
+
         print('学分设置成功')

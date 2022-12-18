@@ -23,38 +23,39 @@ def student(name):
 
 
 def officer(name):
-    newofficer = systempackage.officer.officer(name)
-    print("请选择您要进行的操作：\n1.创建学生\n2.设置学分要求\n3.查看所有老师\n4.退出")
+    control_officer = systempackage.officer.officer(name)
+
     choice = input("请输入您的选择：")
     if choice == '1':
         _name = input('请输入要创建的学生姓名')
         credit = input('请输入要创建的学生学分')
         lesson = input('请输入要创建的学生预分配课程')
         password = input('请输入要创建的学生密码')
-        new_stu_info = newofficer.createstudent(_name, credit, lesson, password)
-        systempackage.student.Student.createstudent(new_stu_info[0], new_stu_info[1], new_stu_info[2], new_stu_info[3])
+        new_stu_info = control_officer.createstudent(_name, credit, lesson, password)
+        systempackage.student.Student.create_student(new_stu_info[0], new_stu_info[1], new_stu_info[2], new_stu_info[3])
         print('创建成功')
     elif choice == '2':
         _name = input('请输入要设置学分要求的学生姓名')
         credit = input('请输入要设置的学分要求')
-        back, back1 = newofficer.setcredit(_name, credit)
+        back, back1 = control_officer.setcredit(_name, credit)
         systempackage.student.Student.set_credit(back, back1)
+        systempackage.student.Student.update(_name)
     elif choice == '3':
         _name = input('请输入要查看学生的姓名')
-        newofficer.seeprofile(_name)
+        control_officer.seeprofile(_name)
     elif choice == '4':
         _course = input('请输入要修改的课程名称')
-        newofficer.changecourse(_course)
+        control_officer.changecourse(_course)
     elif choice == '5':
         _course = input('请输入要查看的课程名称')
-        newofficer.seecourse(_course)
+        control_officer.seecourse(_course)
     elif choice == '6':
         _name = input('请输入要查看的学生姓名')
-        newofficer.seestucourse(_name)
+        control_officer.seestucourse(_name)
     elif choice == '7':
         _name = input('请输入要创建officer的姓名')
         _password = input('请输入要创建officer的密码')
-        newofficer.createofficer(_name, _password)
+        control_officer.createofficer(_name, _password)
     elif choice == '8':
         systempackage.loginsystem.insystem().logout()
         return False
