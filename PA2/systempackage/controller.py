@@ -2,19 +2,20 @@ import os
 
 
 class Controller:
-    def __init__(self):
-        student_list = []
-        officer_list = []
-        course_list = []
+    def __init__(self, name):
+        self.student_list = []
+        self.officer_list = []
+        self.course_list = []
+        self.name = name
         for i in os.listdir():
             if i.startswith('student_'):
-                student_list.append(i[8:-4])
+                self.student_list.append(i[8:-4])
             elif i.startswith('officer_'):
-                officer_list.append(i[8:-4])
+                self.officer_list.append(i[8:-4])
             elif i.startswith('course_'):
-                course_list.append(i[7:-4])
+                self.course_list.append(i[7:-4])
 
-    def create_course(self,name, student_list, teacher, course_type, credit, student_num):
+    def create_course(self, name, student_list, teacher, course_type, credit, student_num):
 
         if name not in self.course_list:
             with open('course_' + name + '.txt', 'w') as course_info:
@@ -45,15 +46,14 @@ class Controller:
         else:
             print('没有这个身份')
 
-
-    def verity(self,name, password):
+    def verity(self, name, password):
         if name in self.student_list:
 
             with open('student:' + name + '.txt', 'r') as studen_info:
                 all = studen_info.readlines()
 
-                rightpassword = all[3][9:-1]
-            if rightpassword == password:
+                right_password = all[3][9:-1]
+            if right_password == password:
                 return 'student'
             else:
                 print('密码错误')
@@ -62,8 +62,8 @@ class Controller:
         elif name in self.officer_list:
             with open('officer:' + name + '.txt', 'r') as officerinfo:
                 all = officerinfo.readlines()
-                rightpassword = all[1][9:-1]
-            if rightpassword == password:
+                right_password = all[1][9:-1]
+            if right_password == password:
                 return 'officer'
             else:
                 print('密码错误')
@@ -75,6 +75,7 @@ class Controller:
     @staticmethod
     def logout():
         print('退出成功')
+
     def create_student(self, name, credit, lesson, password):
         return name, credit, lesson, password
 
@@ -86,9 +87,6 @@ class Controller:
         all = info.read()
         print(all)
         info.close()
-
-    def create_course(self, name, student_list, teacher, course_type, credit, student_num):
-        return name, student_list, teacher, course_type, credit, student_num
 
     def change_course(self, name):
         os.system('course_' + name + '.txt')
@@ -105,11 +103,8 @@ class Controller:
 
         student_info.write('password:' + str(password))
         student_info.close()
-    def __init__(self, name):
-        self.name = name
 
-    @staticmethod
-    def sync(name):
+    def sync(self, name):
         with open('student_' + name + '.txt', 'r') as f:
             all = f.readlines()
             type = []
@@ -125,9 +120,8 @@ class Controller:
                             Selected_Credit.append(int(a[3][8:-1]))
             return ','.join(type), sum(Selected_Credit), credit, ','.join(lesson)
 
-    @staticmethod
-    def update(name):
-        type, Selected_Credit, credit, lesson = Student.sync(name)
+    def update(self, name):
+        type, Selected_Credit, credit, lesson = self.sync(name)
         with open('course_select_report_' + name + '.txt', 'w') as select_report:
             select_report.write('Name:' + name + '\n')
             select_report.write('Required_Credit:' + str(credit) + '\n')
@@ -135,14 +129,13 @@ class Controller:
             select_report.write('type:' + str(type) + '\n')
             select_report.write('lessons:' + str(lesson) + '\n')
 
-    @staticmethod
-    def create_student(name, credit, lesson, password):
+    def create_student(self, name, credit, lesson, password):
         with open('student_' + name + '.txt', 'w') as student_info:
             student_info.write('Name:' + name + '\n')
             student_info.write('Required_Credit:' + str(credit) + '\n')
             student_info.write('lessons:' + str(lesson) + '\n')
             student_info.write('password:' + str(password) + '\n')
-        Student.update(name)
+        self.update(name)
 
     def add_course(self, course):
 
@@ -213,14 +206,13 @@ class Controller:
         else:
             print('没有这节课')
 
-    @staticmethod
-    def set_credit(name, credit):
+    def set_credit(self, name, credit):
         student_info = open('student:' + name + '.txt', 'r+')
         all = student_info.readlines()
-        all[1] = 'Credit:' + str(credit)+'\n'
+        all[1] = 'Credit:' + str(credit) + '\n'
         student_info.close()
         student_info = open('student:' + name + '.txt', 'w')
         student_info.writelines(all)
         student_info.close()
-        Student.update(name)
+        self.update(name)
         print('学分设置成功')
