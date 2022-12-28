@@ -76,11 +76,9 @@ class Controller:
     def logout():
         print('退出成功')
 
-    def create_student(self, name, credit, lesson, password):
-        return name, credit, lesson, password
 
-    def set_credit(self, name, credit):
-        return name, credit
+
+
 
     def see_profile(self, name):
         info = open('student_' + name + '.txt', 'r')
