@@ -12,26 +12,19 @@ class officer:
         return name, credit
 
     def see_profile(self, name):
-        info = open('student_' + name + '.txt', 'r')
-        all = info.read()
-        print(all)
-        info.close()
+        return name
 
     def create_course(self, name, student_list, teacher, course_type, credit, student_num):
         return name, student_list, teacher, course_type, credit, student_num
 
     def change_course(self, name):
-        os.system('course_' + name + '.txt')
+        return name
 
     def see_course(self, name):
-        os.startfile('course_' + name + '.txt', 'print')
+        return name
 
     def see_stu_course(self, name):
-        os.startfile('course_select_report_' + name + '.txt', 'print')
+        return name
 
     def create_officer(self, name, password):
-        student_info = open('officer_' + name + '.txt', 'w')
-        student_info.write('Name:' + name + '\n')
-
-        student_info.write('password:' + str(password))
-        student_info.close()
+        return name, password
