@@ -92,8 +92,7 @@ class Controller:
     def see_course(self, name):
         os.startfile('course_' + name + '.txt', 'print')
 
-    def see_stu_course(self, name):
-        os.startfile('course_select_report_' + name + '.txt', 'print')
+
 
     def create_officer(self, name, password):
         student_info = open('officer_' + name + '.txt', 'w')
