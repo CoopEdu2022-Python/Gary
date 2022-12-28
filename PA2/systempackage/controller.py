@@ -139,13 +139,12 @@ class Controller:
         if course in self.course_list:
 
             with open('course_' + course + '.txt', 'r+') as course_info:
-                all = course_info.readlines()
+                file_all = course_info.readlines()
 
-                student_list = all[5][14:-1].split(',')
+                student_list = file_all[5][14:-1].split(',')
 
-                student_num = all[4][16:-1]
-                course_credit = all[3][8:-1]
-                course_type = all[2][12:-1]
+                student_num = file_all[4][16:-1]
+
                 course_info.close()
             if self.name in student_list:
                 print('你已经选过这门课了')
@@ -153,21 +152,21 @@ class Controller:
                 print('这门课已经满了')
             else:
                 student_list.append(self.name)
-                all[5] = ('Student list: {}'.format(','.join(student_list)))
+                file_all[5] = ('Student list: {}'.format(','.join(student_list)))
                 course_info.close()
                 course_info = open('course:' + course + '.txt', 'w')
-                course_info.writelines(all)
+                course_info.writelines(file_all)
                 print('选课成功')
                 course_info.close()
                 self.update(self.name)
 
                 with open('course_select_report:' + self.name + '.txt', 'r') as course_select_report:
-                    all = course_select_report.readlines()
-                    if 'required' not in list(all[3][5:-1]):
+                    file_all = course_select_report.readlines()
+                    if 'required' not in list(file_all[3][5:-1]):
                         print('你没有选必修课')
-                    if 'optional' not in list(all[3][5:-1]):
+                    if 'optional' not in list(file_all[3][5:-1]):
                         print('你没有选选修课')
-                    if int(all[1][16:-1]) < int(all[2][16:-1]):
+                    if int(file_all[1][16:-1]) < int(file_all[2][16:-1]):
                         print('你的学分不够')
         else:
             print('没有这节课')
@@ -175,17 +174,17 @@ class Controller:
     def drop_course(self, course):
 
         if course in self.course_list:
-            courseinfor = open('course:' + course + '.txt', 'r+')
-            all = courseinfor.readlines()
+            course_infor = open('course:' + course + '.txt', 'r+')
+            file_all = course_infor.readlines()
 
-            studentlist = all[5][14:-1].split(',')
-            courseinfor.close()
-            if self.name in studentlist:
-                studentlist.remove(self.name)
-                all[5] = ('Student list: {}'.format(','.join(studentlist)))
-                courseinfor.close()
-                courseinfor = open('course:' + course + '.txt', 'w')
-                courseinfor.writelines(all)
+            student_list = file_all[5][14:-1].split(',')
+            course_infor.close()
+            if self.name in student_list:
+                student_list.remove(self.name)
+                file_all[5] = ('Student list: {}'.format(','.join(student_list)))
+                course_infor.close()
+                course_infor = open('course:' + course + '.txt', 'w')
+                course_infor.writelines(file_all)
                 print('退课成功')
                 self.update(self.name)
             else:
@@ -197,9 +196,9 @@ class Controller:
     def see_stu_course(self, course):
 
         if course in self.course_list:
-            courseinfor = open('course:' + course + '.txt', 'r')
-            print(courseinfor.read())
-            courseinfor.close()
+            course_infor = open('course:' + course + '.txt', 'r')
+            print(course_infor.read())
+            course_infor.close()
         else:
             print('没有这节课')
 
