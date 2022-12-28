@@ -35,51 +35,6 @@ class Controller:
             print('名称已经用过')
             return False
 
-    @staticmethod
-    def login(type):
-
-        if type == 'student':
-            return 'student'
-
-        elif type == 'officer':
-            return 'officer'
-        else:
-            print('没有这个身份')
-
-    def verity(self, name, password):
-        if name in self.student_list:
-
-            with open('student:' + name + '.txt', 'r') as studen_info:
-                all = studen_info.readlines()
-
-                right_password = all[3][9:-1]
-            if right_password == password:
-                return 'student'
-            else:
-                print('密码错误')
-                return 'error'
-
-        elif name in self.officer_list:
-            with open('officer:' + name + '.txt', 'r') as officerinfo:
-                all = officerinfo.readlines()
-                right_password = all[1][9:-1]
-            if right_password == password:
-                return 'officer'
-            else:
-                print('密码错误')
-                return 'error'
-        else:
-            print('没有此用户')
-            return 'error'
-
-    @staticmethod
-    def logout():
-        print('退出成功')
-
-
-
-
-
     def see_profile(self, name):
         info = open('student_' + name + '.txt', 'r')
         all = info.read()
@@ -91,8 +46,6 @@ class Controller:
 
     def see_course(self, name):
         os.startfile('course_' + name + '.txt', 'print')
-
-
 
     def create_officer(self, name, password):
         student_info = open('officer_' + name + '.txt', 'w')
@@ -204,11 +157,11 @@ class Controller:
 
     def set_credit(self, name, credit):
         student_info = open('student:' + name + '.txt', 'r+')
-        all = student_info.readlines()
-        all[1] = 'Credit:' + str(credit) + '\n'
+        file_all = student_info.readlines()
+        file_all[1] = 'Credit:' + str(credit) + '\n'
         student_info.close()
         student_info = open('student:' + name + '.txt', 'w')
-        student_info.writelines(all)
+        student_info.writelines(file_all)
         student_info.close()
         self.update(name)
         print('学分设置成功')
