@@ -13,14 +13,10 @@ SCREENSIZE = (700, 300)
 IMAGE_PATHS = {
     'ground': 'ground.png',
     'cloud': 'cloud.png',
-    'pterodactyl': 'pterodactyl1.png',
-    'pterodactyl2': 'pterodactyl2.png',
-    'Cactus1': 'Cactus1.png',
-    'Cactus2': 'Cactus2.png',
-    'Cactus3': 'Cactus3.png',
-    'Cactus4': 'Cactus4.png',
-    'Cactus5': 'Cactus5.png',
-    'Cactus6': 'Cactus6.png',
+    'pterodactyl': ['pterodactyl_1.png', 'pterodactyl_2.png'],
+
+    'Cactus': ['Cactus_1.png', 'Cactus_2.png', 'Cactus_3.png', 'Cactus_4.png', 'Cactus_5.png', 'Cactus_6.png'],
+
 
 }
 pygame.init()
@@ -30,6 +26,16 @@ image_ground = pygame.image.load(IMAGE_PATHS['ground'])
 ground = scene.Ground(image_ground, (0, SCREENSIZE[1]))
 image_cloud = pygame.image.load(IMAGE_PATHS['cloud'])
 clouds = pygame.sprite.Group()
+
+image_pterodactyl = []
+for i in range(2):
+    image_pterodactyl.append(pygame.image.load(IMAGE_PATHS['pterodactyl'][i]))
+image_Cactus = []
+for i in range(6):
+    image_Cactus.append(pygame.image.load(IMAGE_PATHS['Cactus'][i]))
+pterodactyl = pygame.sprite.Group()
+
+Cactus = pygame.sprite.Group()
 clock = pygame.time.Clock()
 
 while True:
@@ -51,6 +57,7 @@ while True:
     ground.update()
     clouds.draw(screen)
     clouds.update()
-
+    pterodactyl.draw(screen)
+    pterodactyl.update()
     pygame.display.update()
     clock.tick(FPS)
