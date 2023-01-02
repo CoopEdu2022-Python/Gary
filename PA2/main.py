@@ -7,10 +7,16 @@ def student(name):
     print("请选择您要进行的操作：\n1.选课\n2.退课\n3.查看课程\n4.退出")
     choice = input("请输入您的选择：")
     if choice == '1':
-        print("选课")
-        course = input("请输入您要选的课程：")
-        student_course = new_student.add_course(course)
-        new_control.add_course(student_course)
+        while True:
+            try:
+                print("选课")
+                course = input("请输入您要选的课程：")
+                student_course = new_student.add_course(course)
+                new_control.add_course(student_course)
+                print("选课成功！")
+                break
+            except Exception as e:
+                print(e, '请重新输入')
 
         return True
     if choice == '2':
