@@ -17,6 +17,7 @@ def student(name):
                 break
             except Exception as e:
                 print(e, '请重新输入')
+                continue
 
         return True
     if choice == '2':
