@@ -14,34 +14,27 @@ class Dinosaur(pygame.sprite.Sprite):
         self.speed = 0
         self.refresh_rate = 10
         self.refresh_counter = 0
-        self.duck = False
-        self.dead = False
-        self.jump = False
+        self.duck_ = False
+        self.dead_ = False
+        self.jump_ = False
 
     def jump(self):
-        if not self.jump and not self.duck and not self.dead:
-            self.jump = True
+        if not self.duck_ and not self.dead_:
+            self.jump_ = True
 
             self.rect = self.rect.move([0, -self.speed])
 
-        else:
-            return
-
     def duck(self):
-        if not self.duck and not self.jump and not self.dead:
-            self.duck = True
+        if not self.duck_ and not self.jump_ and not self.dead_:
+            self.duck_ = True
             self.rect = self.rect.move([0, self.speed])
-        else:
-            return
 
     def un_duck(self):
-        self.duck = False
+        self.duck_ = False
 
     def die(self):
-        if not self.dead:
-            self.dead = True
-        else:
-            return
+        if not self.dead_:
+            self.dead_ = True
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -58,23 +51,27 @@ class Dinosaur(pygame.sprite.Sprite):
             self.image_index = 6
         elif self.image_index == 6:
             self.image_index = 5
+        elif self.image_index == 2:
+            self.image_index = 3
+        elif self.image_index == 3:
+            self.image_index = 2
         else:
             self.image_index = 0
         self.load_image()
 
     def update(self):
-        if self.dead:
+        if self.dead_:
             self.image_index = 4
             self.load_image()
-            return
-        elif self.duck:
-            self.image_index = 1
-            self.load_image()
-            return
-        elif self.jump:
+
+        elif self.duck_:
             self.image_index = 2
+            self.refresh()
+
+        elif self.jump_:
+            self.image_index = 4
             self.load_image()
-            return
+
         else:
             if self.refresh_counter == self.refresh_rate:
                 self.refresh()

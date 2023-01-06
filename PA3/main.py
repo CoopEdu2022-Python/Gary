@@ -57,7 +57,7 @@ for i in range(8):
 
 Cactus = pygame.sprite.Group()
 clock = pygame.time.Clock()
-dinosaur1 = dinosaur.Dinosaur(image_dinosaur, (100, 295))
+dinosaur = dinosaur.Dinosaur(image_dinosaur, (100, 295))
 while True:
 
     for event in pygame.event.get():
@@ -66,11 +66,11 @@ while True:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
-                dinosaur1.jump()
+                dinosaur.jump()
             elif event.key == pygame.K_DOWN:
-                dinosaur1.duck()
+                dinosaur.duck()
         elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-            dinosaur1.un_duck()
+            dinosaur.un_duck()
 
     screen.fill(BACKGROUND_COLOR)
 
@@ -93,8 +93,8 @@ while True:
     elif len(Cactus) > 3:
         Cactus.empty()
     pygame.sprite.groupcollide(Cactus, pterodactyl, False,True)
-    if pygame.sprite.spritecollide(dinosaur, Cactus, False) or pygame.sprite.spritecollide(dinosaur, pterodactyl, False):
-        dinosaur.die()
+#    if pygame.sprite.spritecollide(dinosaur, Cactus, False) or pygame.sprite.spritecollide(dinosaur, pterodactyl, False):
+#        dinosaur.die()
     dinosaur.draw(screen)
     dinosaur.update()
 
