@@ -1,15 +1,24 @@
 import pygame
+import random
 
 
-class Cactus:
-    def __init__(self):
-        pass
+class Cactus(pygame.sprite.Sprite):
+    def __init__(self, images, position):
+        super().__init__()
+        self.images = images
+        self.image = self.images[random.randint(0, 5)]
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.bottom = position
+        self.mask = pygame.mask.from_surface(self.image)
+        self.speed = -10
 
-    def draw(self):
-        pass
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
 
     def update(self):
-        pass
+        self.rect = self.rect.move([self.speed, 0])
+        if self.rect.right < 0:
+            self.kill()
 
 
 class Pterodactyl(pygame.sprite.Sprite):
