@@ -17,17 +17,20 @@ class Dinosaur(pygame.sprite.Sprite):
         self.duck_ = False
         self.dead_ = False
         self.jump_ = False
+        self.movement = [0, 0]
+        self.gravity = [0.1,0.3, 0.5]
 
     def jump(self):
-        if not self.duck_ and not self.dead_:
+        if not self.duck_ and not self.dead_ and not self.jump_:
             self.jump_ = True
-
-            self.rect = self.rect.move([0, -self.speed])
+            self.movement[1] = -10
+            self.movement[0] = 0
+        else:
+            return False
 
     def duck(self):
-        if not self.duck_ and not self.jump_ and not self.dead_:
+        if not self.jump_ and not self.dead_:
             self.duck_ = True
-            self.rect = self.rect.move([0, self.speed])
 
     def un_duck(self):
         self.duck_ = False
@@ -62,16 +65,21 @@ class Dinosaur(pygame.sprite.Sprite):
     def update(self):
         if self.dead_:
             self.image_index = 4
-            self.load_image()
+
 
         elif self.duck_:
             self.image_index = 2
-            self.refresh()
+
 
         elif self.jump_:
             self.image_index = 4
-            self.load_image()
-
+            self.movement[1] += self.gravity[1]
+            self.rect = self.rect.move(self.movement)
+            if self.rect.bottom >= 295:
+                self.rect.bottom = 295
+                self.jump_ = False
+                self.movement = [0, 0]
+                self.image_index = 5
         else:
             if self.refresh_counter == self.refresh_rate:
                 self.refresh()
@@ -79,3 +87,4 @@ class Dinosaur(pygame.sprite.Sprite):
             self.refresh_counter += 1
 
             self.rect.left += self.speed
+        self.load_image()
