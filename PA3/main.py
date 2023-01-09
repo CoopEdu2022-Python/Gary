@@ -42,13 +42,15 @@ IMAGE_PATHS = {
                     r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-7.png',
                     r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-8.png',
                     r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-9.png',
-                    r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-10.png',]
-
+                    r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-10.png', ]
 
 }
-AUDIO_PATHS = {}
+AUDIO_PATHS = {'dinosaur': [r'C:\Users\zhang\PycharmProjects\homework\PA3\jump.mp3',
+                            r'C:\Users\zhang\PycharmProjects\homework\PA3\music.mp3',
+                            r'C:\Users\zhang\PycharmProjects\homework\PA3\score.mp3']}
 
 pygame.init()
+pygame.mixer.init()
 screen = pygame.display.set_mode(SCREENSIZE)
 pygame.display.set_caption(TITLE)
 image_ground = pygame.image.load(IMAGE_PATHS['ground'])
@@ -64,32 +66,50 @@ pterodactyl = pygame.sprite.Group()
 image_cactus = []
 for i in range(6):
     image_cactus.append(pygame.image.load(IMAGE_PATHS['Cactus'][i]))
+Cactus = pygame.sprite.Group()
 image_dinosaur = []
 for i in range(8):
     image_dinosaur.append(pygame.image.load(IMAGE_PATHS['dinosaur'][i]))
+audio_dinosaur = []
+for i in range(3):
+    audio_dinosaur.append(pygame.mixer.music.load(AUDIO_PATHS['dinosaur'][i]))
 
-Cactus = pygame.sprite.Group()
-clock = pygame.time.Clock()
-dinosaur = dinosaur.Dinosaur(image_dinosaur, (100, 295))
+dinosaur = dinosaur.Dinosaur(image_dinosaur, audio_dinosaur, (100, 295))
 image_score_board = []
+score_board = scoreboard.Scoreboard(image_score_board, (100, 50))
 for i in range(11):
     image_score_board.append(pygame.image.load(IMAGE_PATHS['score_board'][i]))
-score_board = scoreboard.Scoreboard(image_score_board, (SCREENSIZE[0] / 2, 50))
+
 game_status = 'start'
+clock = pygame.time.Clock()
 while True:
 
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
-                dinosaur.jump()
-            elif event.key == pygame.K_DOWN:
-                dinosaur.duck()
-        elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
-            dinosaur.un_duck()
-
+        if game_status == 'play':
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+                    dinosaur.jump()
+                elif event.key == pygame.K_DOWN:
+                    dinosaur.duck()
+            elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
+                dinosaur.un_duck()
+        elif game_status == 'end':
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.K_DOWN:
+                if event.key == pygame.K_SPACE:
+                    game_status = 'start'
+        else:
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.K_DOWN:
+                if event.key == pygame.K_SPACE:
+                    game_status = 'play'
     screen.fill(BACKGROUND_COLOR)
 
     if len(clouds) < 5:
@@ -111,28 +131,30 @@ while True:
     elif len(Cactus) > 3:
         Cactus.empty()
     pygame.sprite.groupcollide(Cactus, pterodactyl, False, True)
-#   if pygame.sprite.spritecollide(dinosaur, Cactus, False) or pygame.sprite.spritecollide(dinosaur, pterodactyl, False):
-#       dinosaur.die()
+    if pygame.sprite.spritecollide(dinosaur, Cactus, False) or pygame.sprite.spritecollide(dinosaur, pterodactyl,
+                                                                                           False):
+        dinosaur.die()
     score_board.score = ground.displacement // 50  # algorithm of score
     if score_board.score and not score_board.score % 100:
-        pygame.mixer.Sound('resources/audios/score.mp3').play()  # sound
+        pygame.mixer.Sound(r'C:\Users\zhang\PycharmProjects\homework\PA3\score.mp3').play()  # sound
     if game_status == 'end':
         score_board.high_score = max(score_board.score, score_board.high_score)
-        with open('resources/data/score.txt', 'w') as f:
+        with open('score.txt', 'w') as f:
             f.write(str(score_board.high_score))
+
+    dinosaur.update()
     dinosaur.draw(screen)
     dinosaur.update()
     score_board.draw(screen)
-    score_board.update()
-    ground.draw(screen)
     ground.update()
+    ground.draw(screen)
+    clouds.update()
     clouds.draw(screen)
     clouds.update()
     pterodactyl.draw(screen)
-    pterodactyl.update()
-    Cactus.draw(screen)
     Cactus.update()
+    Cactus.draw(screen)
+
     pygame.display.update()
     clock.tick(FPS)
     # update score
-

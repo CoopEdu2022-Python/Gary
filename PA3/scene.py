@@ -17,11 +17,12 @@ class Ground(pygame.sprite.Sprite):
 
         # pixels move each term
         self.speed = -10
-
+        self.displacement= 0
     # calculate position
     def update(self):
         self.rect_0.left += self.speed
         self.rect_1.left += self.speed
+        self.displacement +=self.speed
         if self.rect_0.right < 0:
             self.rect_0.left = self.rect_1.right
             self.rect_0, self.rect_1 = self.rect_1, self.rect_0

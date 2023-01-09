@@ -3,9 +3,10 @@ import sys
 
 
 class Dinosaur(pygame.sprite.Sprite):
-    def __init__(self, images, position):
+    def __init__(self, images, audios,position):
         super().__init__()
         self.images = images
+        self.audios = audios
         self.image = self.images[5]
         self.image_index = 5
         self.rect = self.image.get_rect()
@@ -18,13 +19,20 @@ class Dinosaur(pygame.sprite.Sprite):
         self.dead_ = False
         self.jump_ = False
         self.movement = [0, 0]
-        self.gravity = [0.1,0.3, 0.5]
+        self.gravity = [0.1,0.9, 0.5]
+    def start(self):
+        self.image_index =7
+        self.load_image()
+
 
     def jump(self):
         if not self.duck_ and not self.dead_ and not self.jump_:
+            self.audios[1].play()
+
             self.jump_ = True
             self.movement[1] = -10
             self.movement[0] = 0
+
         else:
             return False
 
@@ -37,6 +45,7 @@ class Dinosaur(pygame.sprite.Sprite):
 
     def die(self):
         if not self.dead_:
+            self.audios[0].play()
             self.dead_ = True
 
     def draw(self, screen):
