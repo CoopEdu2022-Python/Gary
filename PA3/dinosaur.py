@@ -1,12 +1,12 @@
 import pygame
 import sys
-
+import config
 
 class Dinosaur(pygame.sprite.Sprite):
-    def __init__(self, images, audios,position):
+    def __init__(self, images,audios,position):
         super().__init__()
         self.images = images
-        self.audios = audios
+        self.audio = audios
         self.image = self.images[5]
         self.image_index = 5
         self.rect = self.image.get_rect()
@@ -18,26 +18,31 @@ class Dinosaur(pygame.sprite.Sprite):
         self.duck_ = False
         self.dead_ = False
         self.jump_ = False
+        self.statues = False
         self.movement = [0, 0]
         self.gravity = [0.1,0.9, 0.5]
+        self.statue= config.game_status
     def start(self):
-        self.image_index =7
-        self.load_image()
+        self.statues = True
+
+
+
 
 
     def jump(self):
-        if not self.duck_ and not self.dead_ and not self.jump_:
-            self.audios[1].play()
+        if not self.duck_ and  not self.jump_:
+
 
             self.jump_ = True
-            self.movement[1] = -10
-            self.movement[0] = 0
+            self.audio[0].play()
+            self.movement[1] = -15
+
 
         else:
             return False
 
     def duck(self):
-        if not self.jump_ and not self.dead_:
+        if not self.jump_ :
             self.duck_ = True
 
     def un_duck(self):
@@ -45,7 +50,8 @@ class Dinosaur(pygame.sprite.Sprite):
 
     def die(self):
         if not self.dead_:
-            self.audios[0].play()
+
+            self.audio[1].play()
             self.dead_ = True
 
     def draw(self, screen):
@@ -84,11 +90,15 @@ class Dinosaur(pygame.sprite.Sprite):
             self.image_index = 4
             self.movement[1] += self.gravity[1]
             self.rect = self.rect.move(self.movement)
+            self.statues = False
             if self.rect.bottom >= 295:
                 self.rect.bottom = 295
                 self.jump_ = False
                 self.movement = [0, 0]
                 self.image_index = 5
+
+        elif self.statues:
+            self.image_index = 7
         else:
             if self.refresh_counter == self.refresh_rate:
                 self.refresh()

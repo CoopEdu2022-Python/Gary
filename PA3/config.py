@@ -1,6 +1,6 @@
 import pygame
 
-speed = 60
+speed = 10
 FPS = 60
 TITLE = 'Chrome Dino'
 BACKGROUND_COLOR = (235, 235, 235)
@@ -36,13 +36,20 @@ IMAGE_PATHS = {
                     r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-7.png',
                     r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-8.png',
                     r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-9.png',
-                    r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-10.png', ]
+                    r'C:\Users\zhang\PycharmProjects\homework\PA3\scoreboard\scoreboard-10.png', ],
+    'end': [r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\game-over.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-1.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-2.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-3.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-4.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-5.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-6.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-7.png',
+            r'C:\Users\zhang\PycharmProjects\homework\PA3\ending\restart-8.png', ]
 
 }
 AUDIO_PATHS = {'dinosaur': [r'C:\Users\zhang\PycharmProjects\homework\PA3\jump.mp3',
-                            r'C:\Users\zhang\PycharmProjects\homework\PA3\music.mp3',
+                            r'C:\Users\zhang\PycharmProjects\homework\PA3\die.mp3',
                             r'C:\Users\zhang\PycharmProjects\homework\PA3\score.mp3']}
-
-
 
 game_status = 'start'

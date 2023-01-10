@@ -1,5 +1,6 @@
 import sys
 import pygame
+import config
 
 
 class Ground(pygame.sprite.Sprite):
@@ -16,13 +17,14 @@ class Ground(pygame.sprite.Sprite):
         self.rect_1.left, self.rect_1.bottom = self.rect_0.right, self.rect_0.bottom
 
         # pixels move each term
-        self.speed = -10
-        self.displacement= 0
+        self.speed = -config.speed
+        self.displacement = 0
+
     # calculate position
     def update(self):
         self.rect_0.left += self.speed
         self.rect_1.left += self.speed
-        self.displacement +=self.speed
+        self.displacement -= self.speed
         if self.rect_0.right < 0:
             self.rect_0.left = self.rect_1.right
             self.rect_0, self.rect_1 = self.rect_1, self.rect_0
@@ -39,7 +41,7 @@ class Cloud(pygame.sprite.Sprite):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = position
-        self.speed = -5
+        self.speed = -config.speed
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -50,15 +52,14 @@ class Cloud(pygame.sprite.Sprite):
             self.kill()
 
 
-class system(pygame.sprite.Sprite):
+class game_over(pygame.sprite.Sprite):
     def __init__(self, images, position):
         pygame.sprite.Sprite.__init__(self)
         self.images = images
         self.image = self.images[0]
         self.image_index = 0
         self.rect = self.image.get_rect()
-        self.rect.left, self.rect.top = position
-
+        self.rect.centerx, self.rect.centery = position
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -66,5 +67,10 @@ class system(pygame.sprite.Sprite):
     def update(self):
         self.image = self.images[self.image_index]
         self.image_index += 1
-        if self.image_index == len(self.images)+1:
-            self.kill()
+
+        if self.image_index == len(self.images) - 2:
+            self.image_index = len(self.images) - 3
+class Moon(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+

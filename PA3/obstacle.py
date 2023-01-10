@@ -1,6 +1,6 @@
 import pygame
 import random
-
+import config
 
 class Cactus(pygame.sprite.Sprite):
     def __init__(self, images, position):
@@ -10,7 +10,7 @@ class Cactus(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.bottom = position
         self.mask = pygame.mask.from_surface(self.image)
-        self.speed = -10
+        self.speed = -config.speed
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
