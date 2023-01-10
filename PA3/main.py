@@ -82,6 +82,19 @@ for i in range(11):
 
 game_status = 'start'
 clock = pygame.time.Clock()
+def start():
+    global game_status
+    while game_status == 'start':
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game_status = 'quit'
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    game_status = 'running'
+        screen.fill((255, 255, 255))
+        screen.blit(image_dinosaur[8], (100, 295))
+        pygame.display.update()
+        clock.tick(60)
 while True:
 
     for event in pygame.event.get():
@@ -96,20 +109,7 @@ while True:
                     dinosaur.duck()
             elif event.type == pygame.KEYUP and event.key == pygame.K_DOWN:
                 dinosaur.un_duck()
-        elif game_status == 'end':
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.K_DOWN:
-                if event.key == pygame.K_SPACE:
-                    game_status = 'start'
-        else:
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.K_DOWN:
-                if event.key == pygame.K_SPACE:
-                    game_status = 'play'
+
     screen.fill(BACKGROUND_COLOR)
 
     if len(clouds) < 5:
