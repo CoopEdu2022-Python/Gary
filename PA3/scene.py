@@ -50,3 +50,21 @@ class Cloud(pygame.sprite.Sprite):
             self.kill()
 
 
+class system(pygame.sprite.Sprite):
+    def __init__(self, images, position):
+        pygame.sprite.Sprite.__init__(self)
+        self.images = images
+        self.image = self.images[0]
+        self.image_index = 0
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = position
+
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+
+    def update(self):
+        self.image = self.images[self.image_index]
+        self.image_index += 1
+        if self.image_index == len(self.images)+1:
+            self.kill()
