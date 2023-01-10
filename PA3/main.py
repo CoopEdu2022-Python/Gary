@@ -82,6 +82,8 @@ for i in range(11):
 
 game_status = 'start'
 clock = pygame.time.Clock()
+
+
 def start():
     global game_status
     while game_status == 'start':
@@ -95,6 +97,8 @@ def start():
         screen.blit(image_dinosaur[8], (100, 295))
         pygame.display.update()
         clock.tick(60)
+
+
 while True:
 
     for event in pygame.event.get():
@@ -134,6 +138,8 @@ while True:
     if pygame.sprite.spritecollide(dinosaur, Cactus, False) or pygame.sprite.spritecollide(dinosaur, pterodactyl,
                                                                                            False):
         dinosaur.die()
+
+    # scoreboard
     score_board.score = ground.displacement // 50  # algorithm of score
     if score_board.score and not score_board.score % 100:
         pygame.mixer.Sound(r'C:\Users\zhang\PycharmProjects\homework\PA3\score.mp3').play()  # sound
@@ -145,6 +151,7 @@ while True:
     dinosaur.update()
     dinosaur.draw(screen)
     dinosaur.update()
+    score_board.update()
     score_board.draw(screen)
     ground.update()
     ground.draw(screen)
