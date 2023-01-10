@@ -97,7 +97,7 @@ def end():
         game_over.update()
         time.sleep(0.5)
         pygame.display.update()
-        clock.tick(60)
+
         config.speed = 0
 
 
@@ -121,7 +121,9 @@ def running():
         # scoreboard
         score_board.score = ground.displacement // 50  # algorithm of score
         if score_board.score and not score_board.score % 100:
-            pygame.mixer.Sound(r'C:\Users\zhang\PycharmProjects\homework\PA3\score.mp3').play()  # sound
+            pygame.mixer.Sound(r'C:\Users\zhang\PycharmProjects\homework\PA3\score.mp3').play()
+            config.speed += 0.5
+
         if config.game_status == 'end':
             score_board.high_score = max(score_board.score, score_board.high_score)
             with open('score.txt', 'w') as f:
@@ -153,6 +155,23 @@ def running():
                                                                                                False):
             dinosaur.die()
             config.game_status = 'end'
+        if score_board.score%1000==0:
+            config.mode = 'night'
+            if config.mode == 'night':
+                config.screen_color_rate-=1
+                if config.screen_color_rate<=0:
+                    config.screen_color_rate=0
+                    config.mode = 'day'
+                config.screen_color=(config.screen_color_rate,config.screen_color_rate,config.screen_color_rate)
+                screen.fill(config.screen_color)
+            elif config.mode == 'day':
+                if config.mode == 'day':
+                    config.screen_color_rate+=1
+                    if config.screen_color_rate>=255:
+                        config.screen_color_rate=255
+                    config.screen_color=(config.screen_color_rate,config.screen_color_rate,config.screen_color_rate)
+                    screen.fill(config.screen_color)
+
 
 
 

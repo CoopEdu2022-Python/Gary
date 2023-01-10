@@ -53,3 +53,6 @@ AUDIO_PATHS = {'dinosaur': [r'C:\Users\zhang\PycharmProjects\homework\PA3\jump.m
                             r'C:\Users\zhang\PycharmProjects\homework\PA3\score.mp3']}
 
 game_status = 'start'
+mode = 'day'
+screen_color_rate = 0
+screen_color = (255, 255, 255)

@@ -70,7 +70,31 @@ class game_over(pygame.sprite.Sprite):
 
         if self.image_index == len(self.images) - 2:
             self.image_index = len(self.images) - 3
+
+
 class Moon(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, images, position):
         super().__init__()
+        self.images = images
+        self.image_index = 0
+        self.image = self.images[self.image_index]
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.bottom = position
+        self.refresh_counter = 0
+        self.refresh_rate = 20
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+
+    def update(self):
+        self.image = self.images[self.image_index]
+        if self.refresh_counter == self.refresh_rate:
+            self.image_index += 1
+            if self.image_index == len(self.images):
+                self.image_index = 7
+
+            self.refresh_counter = 0
+        self.refresh_counter += 1
+        if self.image_index == 7:
+            config.mode = 'day'
 
