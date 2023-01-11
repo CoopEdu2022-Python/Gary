@@ -7,6 +7,7 @@ import pygame
 import scoreboard
 import config
 import time
+
 # settings
 
 
@@ -40,7 +41,7 @@ for i in range(3):
 dinosaur = dinosaur.Dinosaur(image_dinosaur, audio_dinosaur, (100, 295))
 image_score_board = []
 
-for i in range(11):
+for i in range(20):
     image_score_board.append(pygame.image.load(config.IMAGE_PATHS['score_board'][i]))
 score_board = scoreboard.Scoreboard(image_score_board, (600, 1500))
 image_game_over = []
@@ -90,16 +91,16 @@ def end():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    config.game_status= 'start'
+                    config.game_status = 'start'
                     return True
-
+        clock = pygame.time.Clock()
         game_over.draw(screen)
         game_over.update()
         time.sleep(0.5)
         pygame.display.update()
 
         config.speed = 0
-
+        clock.tick(config.FPS)
 
 def running():
     while True:
@@ -155,27 +156,20 @@ def running():
                                                                                                False):
             dinosaur.die()
             config.game_status = 'end'
-        if score_board.score%1000==0:
+        if score_board.score % 1000 == 0:
             config.mode = 'night'
             if config.mode == 'night':
-                config.screen_color_rate-=1
-                if config.screen_color_rate<=0:
-                    config.screen_color_rate=0
-                    config.mode = 'day'
-                config.screen_color=(config.screen_color_rate,config.screen_color_rate,config.screen_color_rate)
+                config.screen_color_rate -= 1
+                if config.screen_color_rate <= 0:
+
+                    config.screen_color_rate += 1
+                    if config.screen_color_rate >= 255:
+                        config.screen_color_rate = 255
+                        config.mode = 'day'
+                config.screen_color = (config.screen_color_rate, config.screen_color_rate, config.screen_color_rate)
                 screen.fill(config.screen_color)
-            elif config.mode == 'day':
-                if config.mode == 'day':
-                    config.screen_color_rate+=1
-                    if config.screen_color_rate>=255:
-                        config.screen_color_rate=255
-                    config.screen_color=(config.screen_color_rate,config.screen_color_rate,config.screen_color_rate)
-                    screen.fill(config.screen_color)
-
-
-
-
-
+        score_board.update()
+        score_board.draw(screen)
         dinosaur.update()
         dinosaur.draw(screen)
         dinosaur.update()
@@ -188,8 +182,7 @@ def running():
         pterodactyl.draw(screen)
         Cactus.update()
         Cactus.draw(screen)
-        score_board.update()
-        score_board.draw(screen)
+
         pygame.display.update()
         clock.tick(config.FPS)
 
@@ -200,6 +193,3 @@ while True:
         if running():
             if end():
                 continue
-
-
-
