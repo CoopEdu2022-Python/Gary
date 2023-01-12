@@ -20,7 +20,7 @@ class Dinosaur(pygame.sprite.Sprite):
         self.jump_ = False
         self.statues = False
         self.movement = [0, 0]
-        self.gravity = [0.1,0.7, 0.5]
+        self.gravity = [0.2,0.7,0.7]
         self.statue= config.game_status
     def start(self):
         self.statues = True
@@ -49,10 +49,10 @@ class Dinosaur(pygame.sprite.Sprite):
         self.duck_ = False
 
     def die(self):
-        if not self.dead_:
 
-            self.audio[1].play()
-            self.dead_ = True
+
+        self.audio[1].play()
+        self.dead_ = True
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

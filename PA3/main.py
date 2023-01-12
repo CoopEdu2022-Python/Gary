@@ -40,10 +40,12 @@ for i in range(3):
 
 dinosaur = dinosaur.Dinosaur(image_dinosaur, audio_dinosaur, (100, 295))
 image_score_board = []
-
-for i in range(20):
-    image_score_board.append(pygame.image.load(config.IMAGE_PATHS['score_board'][i]))
-score_board = scoreboard.Scoreboard(image_score_board, (600, 1500))
+image_score_board_reverse = []
+for i in range(11):
+    image_score_board.append(pygame.image.load(config.IMAGE_PATHS['score_board'][0][i]))
+    image_score_board_reverse.append(pygame.image.load(config.IMAGE_PATHS['score_board'][1][i]))
+image_score_board_all = [image_score_board, image_score_board_reverse]
+score_board = scoreboard.Scoreboard(image_score_board_all, (1000, 50))
 image_game_over = []
 for i in range(9):
     image_game_over.append(pygame.image.load(config.IMAGE_PATHS['end'][i]))
@@ -84,23 +86,32 @@ def start():
 
 def end():
     global game_status
-    while game_status == 'end':
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    config.game_status = 'start'
-                    return True
-        clock = pygame.time.Clock()
-        game_over.draw(screen)
-        game_over.update()
-        time.sleep(0.5)
-        pygame.display.update()
+    if game_status == 'end':
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        config.game_status = 'start'
 
-        config.speed = 0
-        clock.tick(config.FPS)
+                        return True
+            screen.fill(config.BACKGROUND_COLOR)
+            config.speed = 0
+            clock = pygame.time.Clock()
+
+            game_over.update()
+            game_over.draw(screen)
+            dinosaur.draw(screen)
+            ground.draw(screen)
+            pterodactyl.draw(screen)
+            Cactus.draw(screen)
+            pygame.display.update()
+
+            clock.tick(config.FPS)
+            time.sleep(5)
+
 
 def running():
     while True:
@@ -156,6 +167,7 @@ def running():
                                                                                                False):
             dinosaur.die()
             config.game_status = 'end'
+            return True
         if score_board.score % 1000 == 0:
             config.mode = 'night'
             if config.mode == 'night':
@@ -168,8 +180,7 @@ def running():
                         config.mode = 'day'
                 config.screen_color = (config.screen_color_rate, config.screen_color_rate, config.screen_color_rate)
                 screen.fill(config.screen_color)
-        score_board.update()
-        score_board.draw(screen)
+
         dinosaur.update()
         dinosaur.draw(screen)
         dinosaur.update()
@@ -182,14 +193,16 @@ def running():
         pterodactyl.draw(screen)
         Cactus.update()
         Cactus.draw(screen)
-
+        score_board.update()
+        score_board.draw(screen)
         pygame.display.update()
         clock.tick(config.FPS)
+
 
 
 while True:
     if start():
         config.game_status = 'running'
-        if running():
-            if end():
-                continue
+        running()
+
+
