@@ -1,5 +1,9 @@
-def h(a,c,b):
-    j= b[c-a+1:]
-    u=b[0:c-a+1]
-    print(j+u)
-h(2,7,'12345678')
+def h(a, c, b):
+    sentence = b
+    for i in range(c):
+
+        sentence=sentence[-1:]+sentence[:-1:]
+    print(sentence)
+
+
+h(1,0,1)
