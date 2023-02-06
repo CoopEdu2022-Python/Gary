@@ -183,13 +183,13 @@ def running():
 
         dinosaur.update()
         dinosaur.draw(screen)
-        dinosaur.update()
+
 
         ground.update()
         ground.draw(screen)
         clouds.update()
         clouds.draw(screen)
-        clouds.update()
+
         pterodactyl.draw(screen)
         Cactus.update()
         Cactus.draw(screen)
